@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,29 +12,42 @@
 		0477EAA526124D90009DC747 /* Household.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477EAA426124D90009DC747 /* Household.swift */; };
 		0477EAAD26124DA6009DC747 /* Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477EAAC26124DA6009DC747 /* Chore.swift */; };
 		0477EAB026124DCC009DC747 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477EAAF26124DCC009DC747 /* User.swift */; };
+		047F000626128FD6009EF15D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F000526128FD6009EF15D /* TabBarViewController.swift */; };
+		047F00092612B6D1009EF15D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F00082612B6D1009EF15D /* ProfileViewController.swift */; };
+		047F000C2612B6FC009EF15D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F000B2612B6FC009EF15D /* SettingsViewController.swift */; };
 		048E5B6D260BB139009978B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E5B6C260BB139009978B4 /* AppDelegate.swift */; };
 		048E5B6F260BB139009978B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E5B6E260BB139009978B4 /* SceneDelegate.swift */; };
-		048E5B71260BB139009978B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E5B70260BB139009978B4 /* ViewController.swift */; };
-		048E5B74260BB139009978B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B72260BB139009978B4 /* Main.storyboard */; };
+		048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E5B70260BB139009978B4 /* HomeViewController.swift */; };
 		048E5B76260BB13C009978B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B75260BB13C009978B4 /* Assets.xcassets */; };
 		048E5B79260BB13C009978B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */; };
+		04DDB02426140890008E03EB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDB02326140890008E03EB /* WelcomeViewController.swift */; };
+		04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDB02D261420FD008E03EB /* AuthViewController.swift */; };
+		5F8285A9CDBECEED52DE1F35 /* Pods_Choreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02B3C831DDA889BBDB985D36 /* Pods-Choreboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choreboard.release.xcconfig"; path = "Target Support Files/Pods-Choreboard/Pods-Choreboard.release.xcconfig"; sourceTree = "<group>"; };
 		0477EA9C26124D40009DC747 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		0477EAA026124D4D009DC747 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		0477EAA426124D90009DC747 /* Household.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Household.swift; sourceTree = "<group>"; };
 		0477EAAC26124DA6009DC747 /* Chore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chore.swift; sourceTree = "<group>"; };
 		0477EAAF26124DCC009DC747 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		047F000526128FD6009EF15D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		047F00082612B6D1009EF15D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		047F000B2612B6FC009EF15D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		048E5B69260BB139009978B4 /* Choreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Choreboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		048E5B6C260BB139009978B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		048E5B6E260BB139009978B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		048E5B70260BB139009978B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		048E5B73260BB139009978B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		048E5B70260BB139009978B4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		048E5B75260BB13C009978B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		048E5B78260BB13C009978B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048E5B7A260BB13C009978B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048E5B81260BB2A7009978B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04DDB02326140890008E03EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		04DDB0282614155F008E03EB /* Choreboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Choreboard.entitlements; sourceTree = "<group>"; };
+		04DDB02D261420FD008E03EB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		1DE03E46D72AE7C797C70C4F /* Pods-Choreboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choreboard.debug.xcconfig"; path = "Target Support Files/Pods-Choreboard/Pods-Choreboard.debug.xcconfig"; sourceTree = "<group>"; };
+		2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Choreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,12 +55,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F8285A9CDBECEED52DE1F35 /* Pods_Choreboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040CD17C2613C6570094D55D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		040CD17D2613C66D0094D55D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		040CD17E2613C6DD0094D55D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				048E5B6C260BB139009978B4 /* AppDelegate.swift */,
+				048E5B6E260BB139009978B4 /* SceneDelegate.swift */,
+				048E5B75260BB13C009978B4 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0477EA9B26124D1B009DC747 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,24 +109,14 @@
 		0477EAB226124EBD009DC747 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0477EAB326124ED4009DC747 /* Core */,
-				0477EAB426124ED9009DC747 /* Other */,
+				047F000526128FD6009EF15D /* TabBarViewController.swift */,
+				047F00082612B6D1009EF15D /* ProfileViewController.swift */,
+				048E5B70260BB139009978B4 /* HomeViewController.swift */,
+				047F000B2612B6FC009EF15D /* SettingsViewController.swift */,
+				04DDB02326140890008E03EB /* WelcomeViewController.swift */,
+				04DDB02D261420FD008E03EB /* AuthViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		0477EAB326124ED4009DC747 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		0477EAB426124ED9009DC747 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		048E5B60260BB139009978B4 = {
@@ -96,6 +125,8 @@
 				048E5B81260BB2A7009978B4 /* README.md */,
 				048E5B6B260BB139009978B4 /* Choreboard */,
 				048E5B6A260BB139009978B4 /* Products */,
+				290FF01613E297E269013CA9 /* Pods */,
+				FD78F429A5BE236A6E4C94D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,18 +141,33 @@
 		048E5B6B260BB139009978B4 /* Choreboard */ = {
 			isa = PBXGroup;
 			children = (
-				0477EAB226124EBD009DC747 /* Controllers */,
-				0477EAA326124D7D009DC747 /* Models */,
+				04DDB0282614155F008E03EB /* Choreboard.entitlements */,
+				040CD17E2613C6DD0094D55D /* Resources */,
 				0477EA9B26124D1B009DC747 /* Managers */,
-				048E5B6C260BB139009978B4 /* AppDelegate.swift */,
-				048E5B6E260BB139009978B4 /* SceneDelegate.swift */,
-				048E5B70260BB139009978B4 /* ViewController.swift */,
-				048E5B72260BB139009978B4 /* Main.storyboard */,
-				048E5B75260BB13C009978B4 /* Assets.xcassets */,
-				048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */,
+				0477EAA326124D7D009DC747 /* Models */,
+				040CD17C2613C6570094D55D /* ViewModels */,
+				040CD17D2613C66D0094D55D /* Views */,
+				0477EAB226124EBD009DC747 /* Controllers */,
 				048E5B7A260BB13C009978B4 /* Info.plist */,
 			);
 			path = Choreboard;
+			sourceTree = "<group>";
+		};
+		290FF01613E297E269013CA9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1DE03E46D72AE7C797C70C4F /* Pods-Choreboard.debug.xcconfig */,
+				02B3C831DDA889BBDB985D36 /* Pods-Choreboard.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FD78F429A5BE236A6E4C94D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,9 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 048E5B7D260BB13C009978B4 /* Build configuration list for PBXNativeTarget "Choreboard" */;
 			buildPhases = (
+				50185C85046856221C91D2F9 /* [CP] Check Pods Manifest.lock */,
 				048E5B65260BB139009978B4 /* Sources */,
 				048E5B66260BB139009978B4 /* Frameworks */,
 				048E5B67260BB139009978B4 /* Resources */,
+				0A57A0559CE94ED52BE3559F /* [CP] Embed Pods Frameworks */,
+				79629D0AF695AF628E583D9F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -183,23 +232,86 @@
 			files = (
 				048E5B79260BB13C009978B4 /* LaunchScreen.storyboard in Resources */,
 				048E5B76260BB13C009978B4 /* Assets.xcassets in Resources */,
-				048E5B74260BB139009978B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A57A0559CE94ED52BE3559F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Choreboard/Pods-Choreboard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Choreboard/Pods-Choreboard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Choreboard/Pods-Choreboard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50185C85046856221C91D2F9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Choreboard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79629D0AF695AF628E583D9F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Choreboard/Pods-Choreboard-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Choreboard/Pods-Choreboard-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Choreboard/Pods-Choreboard-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		048E5B65260BB139009978B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				048E5B71260BB139009978B4 /* ViewController.swift in Sources */,
+				048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */,
 				0477EA9D26124D40009DC747 /* AuthManager.swift in Sources */,
+				047F000C2612B6FC009EF15D /* SettingsViewController.swift in Sources */,
+				047F00092612B6D1009EF15D /* ProfileViewController.swift in Sources */,
 				048E5B6D260BB139009978B4 /* AppDelegate.swift in Sources */,
 				0477EAA526124D90009DC747 /* Household.swift in Sources */,
+				047F000626128FD6009EF15D /* TabBarViewController.swift in Sources */,
 				0477EAB026124DCC009DC747 /* User.swift in Sources */,
+				04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */,
 				0477EAAD26124DA6009DC747 /* Chore.swift in Sources */,
+				04DDB02426140890008E03EB /* WelcomeViewController.swift in Sources */,
 				0477EAA126124D4D009DC747 /* APICaller.swift in Sources */,
 				048E5B6F260BB139009978B4 /* SceneDelegate.swift in Sources */,
 			);
@@ -208,14 +320,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		048E5B72260BB139009978B4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				048E5B73260BB139009978B4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -345,10 +449,14 @@
 		};
 		048E5B7E260BB13C009978B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DE03E46D72AE7C797C70C4F /* Pods-Choreboard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Choreboard/Choreboard.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Choreboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -356,6 +464,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UND.Choreboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -363,10 +472,14 @@
 		};
 		048E5B7F260BB13C009978B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02B3C831DDA889BBDB985D36 /* Pods-Choreboard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Choreboard/Choreboard.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Choreboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -374,6 +487,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UND.Choreboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
