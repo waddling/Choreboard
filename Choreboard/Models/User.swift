@@ -6,8 +6,19 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct User {
+class User: Object {
+    @objc dynamic var _id: String = ""
+    @objc dynamic var _partition: String = ""
+    @objc dynamic var name: String = ""
+    let memberOf = RealmSwift.List<Household>()
+    override static func primaryKey() -> String? {
+        return "_id"
+    }
+}
+
+struct UserSwift {
     let id: String
     let firstName: String
     let middleName: String?

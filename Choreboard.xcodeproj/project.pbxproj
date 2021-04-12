@@ -44,7 +44,6 @@
 		048E5B7A260BB13C009978B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048E5B81260BB2A7009978B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		04DDB02326140890008E03EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		04DDB0282614155F008E03EB /* Choreboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Choreboard.entitlements; sourceTree = "<group>"; };
 		04DDB02D261420FD008E03EB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		1DE03E46D72AE7C797C70C4F /* Pods-Choreboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choreboard.debug.xcconfig"; path = "Target Support Files/Pods-Choreboard/Pods-Choreboard.debug.xcconfig"; sourceTree = "<group>"; };
 		2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Choreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +140,6 @@
 		048E5B6B260BB139009978B4 /* Choreboard */ = {
 			isa = PBXGroup;
 			children = (
-				04DDB0282614155F008E03EB /* Choreboard.entitlements */,
 				040CD17E2613C6DD0094D55D /* Resources */,
 				0477EA9B26124D1B009DC747 /* Managers */,
 				0477EAA326124D7D009DC747 /* Models */,
