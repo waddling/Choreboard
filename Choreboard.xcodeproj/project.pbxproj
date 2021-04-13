@@ -27,6 +27,8 @@
 		04E918BB26252AFF009469F0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E918BA26252AFF009469F0 /* SignUpViewController.swift */; };
 		5F8285A9CDBECEED52DE1F35 /* Pods_Choreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */; };
 		FE8B110326262E0900236EB3 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B110226262E0900236EB3 /* UserPageViewController.swift */; };
+		FE8B111226265C7800236EB3 /* ChoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B111126265C7800236EB3 /* ChoreCollectionViewCell.swift */; };
+		FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B111526265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift */; };
 		FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882BE2625F426004F0D1E /* SettingsModels.swift */; };
 		FEB882C22625F980004F0D1E /* HouseholdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882C12625F980004F0D1E /* HouseholdViewController.swift */; };
 		FEB882C52625FB0A004F0D1E /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */; };
@@ -58,6 +60,8 @@
 		1DE03E46D72AE7C797C70C4F /* Pods-Choreboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choreboard.debug.xcconfig"; path = "Target Support Files/Pods-Choreboard/Pods-Choreboard.debug.xcconfig"; sourceTree = "<group>"; };
 		2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Choreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8B110226262E0900236EB3 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
+		FE8B111126265C7800236EB3 /* ChoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE8B111526265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdMemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		FEB882BE2625F426004F0D1E /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		FEB882C12625F980004F0D1E /* HouseholdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdViewController.swift; sourceTree = "<group>"; };
 		FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 		040CD17D2613C66D0094D55D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FE8B111026265BF300236EB3 /* Home */,
 				048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
@@ -195,6 +200,15 @@
 				2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE8B111026265BF300236EB3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FE8B111126265C7800236EB3 /* ChoreCollectionViewCell.swift */,
+				FE8B111526265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,7 +360,9 @@
 				0477EAAD26124DA6009DC747 /* Chore.swift in Sources */,
 				04DDB02426140890008E03EB /* WelcomeViewController.swift in Sources */,
 				0477EAA126124D4D009DC747 /* APICaller.swift in Sources */,
+				FE8B111226265C7800236EB3 /* ChoreCollectionViewCell.swift in Sources */,
 				FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */,
+				FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */,
 				048E5B6F260BB139009978B4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
