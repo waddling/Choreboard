@@ -26,7 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if AuthManager.shared.isSignedIn {
             window.rootViewController = TabBarViewController()
         } else {
-            window.rootViewController = UINavigationController(rootViewController: SignUpViewController())
+            //window.rootViewController = UINavigationController(rootViewController: SignUpViewController())
+            window.rootViewController = TabBarViewController()
         }
         
         window.makeKeyAndVisible()
