@@ -45,18 +45,20 @@ class WelcomeViewController: UIViewController {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         let GIDSignIn = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 230, height: 48))
         GIDSignIn.center = view.center
-        view.addSubview(GIDSignIn)
         
         // Automatically sign in the user.
         // GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         
-        // MARK: Sign In with email
+        
+        
+        
+        
         // Create a view that will automatically lay out the other controls.
         let container = UIStackView()
         container.translatesAutoresizingMaskIntoConstraints = false
         container.axis = .vertical
         container.alignment = .fill
-        container.spacing = 16.0
+        container.spacing = 5.0
         view.addSubview(container)
         
         // Configure the activity indicator.
@@ -68,9 +70,9 @@ class WelcomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             // This pins the container view to the top and stretches it to fill the parent
             // view horizontally.
-            container.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 16),
-            container.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -16),
-            container.topAnchor.constraint(equalTo: guide.topAnchor, constant: 16),
+            container.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 70),
+            container.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -70),
+            container.topAnchor.constraint(equalTo: guide.topAnchor, constant: 100),
             // The activity indicator is centered over the rest of the view.
             activityIndicator.centerYAnchor.constraint(equalTo: guide.centerYAnchor),
             activityIndicator.centerXAnchor.constraint(equalTo: guide.centerXAnchor)
@@ -180,9 +182,9 @@ class WelcomeViewController: UIViewController {
                             switch result {
                             case .failure(let error):
                                 fatalError("Failed to open realm: \(error)")
-                            case .success(let userRealm):
+                            case .success(let _):
                                 // Go to the list of projects in the user object contained in the user realm.
-                                self!.navigationController!.pushViewController(TabBarViewController(userRealm: userRealm), animated: true)
+                                self!.navigationController!.pushViewController(TabBarViewController(), animated: true)
                             }
                         }
                     }

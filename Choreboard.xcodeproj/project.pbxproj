@@ -20,8 +20,11 @@
 		048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E5B70260BB139009978B4 /* HomeViewController.swift */; };
 		048E5B76260BB13C009978B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B75260BB13C009978B4 /* Assets.xcassets */; };
 		048E5B79260BB13C009978B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */; };
+		04B904CA2625D3E8001551A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B904C92625D3E8001551A5 /* Extensions.swift */; };
 		04DDB02426140890008E03EB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDB02326140890008E03EB /* WelcomeViewController.swift */; };
 		04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDB02D261420FD008E03EB /* AuthViewController.swift */; };
+		04E918B826252AD2009469F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E918B726252AD2009469F0 /* LoginViewController.swift */; };
+		04E918BB26252AFF009469F0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E918BA26252AFF009469F0 /* SignUpViewController.swift */; };
 		5F8285A9CDBECEED52DE1F35 /* Pods_Choreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,8 +46,11 @@
 		048E5B78260BB13C009978B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048E5B7A260BB13C009978B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048E5B81260BB2A7009978B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04B904C92625D3E8001551A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04DDB02326140890008E03EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		04DDB02D261420FD008E03EB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		04E918B726252AD2009469F0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		04E918BA26252AFF009469F0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1DE03E46D72AE7C797C70C4F /* Pods-Choreboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choreboard.debug.xcconfig"; path = "Target Support Files/Pods-Choreboard/Pods-Choreboard.debug.xcconfig"; sourceTree = "<group>"; };
 		2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Choreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -114,6 +120,8 @@
 				047F000B2612B6FC009EF15D /* SettingsViewController.swift */,
 				04DDB02326140890008E03EB /* WelcomeViewController.swift */,
 				04DDB02D261420FD008E03EB /* AuthViewController.swift */,
+				04E918B726252AD2009469F0 /* LoginViewController.swift */,
+				04E918BA26252AFF009469F0 /* SignUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 		048E5B6B260BB139009978B4 /* Choreboard */ = {
 			isa = PBXGroup;
 			children = (
+				04B904C82625D3C3001551A5 /* Helpers */,
 				040CD17E2613C6DD0094D55D /* Resources */,
 				0477EA9B26124D1B009DC747 /* Managers */,
 				0477EAA326124D7D009DC747 /* Models */,
@@ -149,6 +158,14 @@
 				048E5B7A260BB13C009978B4 /* Info.plist */,
 			);
 			path = Choreboard;
+			sourceTree = "<group>";
+		};
+		04B904C82625D3C3001551A5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				04B904C92625D3E8001551A5 /* Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		290FF01613E297E269013CA9 /* Pods */ = {
@@ -299,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E918B826252AD2009469F0 /* LoginViewController.swift in Sources */,
 				048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */,
 				0477EA9D26124D40009DC747 /* AuthManager.swift in Sources */,
 				047F000C2612B6FC009EF15D /* SettingsViewController.swift in Sources */,
@@ -307,7 +325,9 @@
 				0477EAA526124D90009DC747 /* Household.swift in Sources */,
 				047F000626128FD6009EF15D /* TabBarViewController.swift in Sources */,
 				0477EAB026124DCC009DC747 /* User.swift in Sources */,
+				04E918BB26252AFF009469F0 /* SignUpViewController.swift in Sources */,
 				04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */,
+				04B904CA2625D3E8001551A5 /* Extensions.swift in Sources */,
 				0477EAAD26124DA6009DC747 /* Chore.swift in Sources */,
 				04DDB02426140890008E03EB /* WelcomeViewController.swift in Sources */,
 				0477EAA126124D4D009DC747 /* APICaller.swift in Sources */,
