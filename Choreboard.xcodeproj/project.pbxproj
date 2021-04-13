@@ -26,6 +26,7 @@
 		04E918B826252AD2009469F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E918B726252AD2009469F0 /* LoginViewController.swift */; };
 		04E918BB26252AFF009469F0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E918BA26252AFF009469F0 /* SignUpViewController.swift */; };
 		5F8285A9CDBECEED52DE1F35 /* Pods_Choreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */; };
+		FE8B110326262E0900236EB3 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B110226262E0900236EB3 /* UserPageViewController.swift */; };
 		FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882BE2625F426004F0D1E /* SettingsModels.swift */; };
 		FEB882C22625F980004F0D1E /* HouseholdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882C12625F980004F0D1E /* HouseholdViewController.swift */; };
 		FEB882C52625FB0A004F0D1E /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */; };
@@ -56,6 +57,7 @@
 		04E918BA26252AFF009469F0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		1DE03E46D72AE7C797C70C4F /* Pods-Choreboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choreboard.debug.xcconfig"; path = "Target Support Files/Pods-Choreboard/Pods-Choreboard.debug.xcconfig"; sourceTree = "<group>"; };
 		2C901CCC48E7D7761995E0C6 /* Pods_Choreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Choreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE8B110226262E0900236EB3 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		FEB882BE2625F426004F0D1E /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		FEB882C12625F980004F0D1E /* HouseholdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdViewController.swift; sourceTree = "<group>"; };
 		FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				04E918BA26252AFF009469F0 /* SignUpViewController.swift */,
 				FEB882C12625F980004F0D1E /* HouseholdViewController.swift */,
 				FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */,
+				FE8B110226262E0900236EB3 /* UserPageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			files = (
 				04E918B826252AD2009469F0 /* LoginViewController.swift in Sources */,
 				048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */,
+				FE8B110326262E0900236EB3 /* UserPageViewController.swift in Sources */,
 				0477EA9D26124D40009DC747 /* AuthManager.swift in Sources */,
 				047F000C2612B6FC009EF15D /* SettingsViewController.swift in Sources */,
 				FEB882C22625F980004F0D1E /* HouseholdViewController.swift in Sources */,

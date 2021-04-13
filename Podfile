@@ -8,5 +8,7 @@ target 'Choreboard' do
   # Pods for Choreboard
   pod 'GoogleSignIn'
   pod 'RealmSwift'
+  pod 'SDWebImage'
+  pod 'Appirater'
 
 end

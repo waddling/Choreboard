@@ -35,9 +35,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     private func configureModels() {
         sections.append(Section(title: "Profiles",
                                 options: [
-            Option(title: "My Profile", handler: { [weak self] in
+            Option(title: "My User Page", handler: { [weak self] in
                 DispatchQueue.main.async {
-                    self?.viewProfile()
+                    self?.viewUserPage()
                 }
             }), Option(title: "Household", handler: { [weak self] in
                 DispatchQueue.main.async {
@@ -60,9 +60,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         ]))
     }
     
-    private func viewProfile() {
-        let vc = ProfileViewController()
-        vc.title = "Profile"
+    private func viewUserPage() {
+        let vc = UserPageViewController()
+        vc.title = "User Page"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }

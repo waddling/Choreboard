@@ -16,6 +16,11 @@ class User: Object {
     override static func primaryKey() -> String? {
         return "_id"
     }
+    
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
 }
 
 struct UserSwift {
