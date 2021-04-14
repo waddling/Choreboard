@@ -29,6 +29,9 @@
 		FE8B110326262E0900236EB3 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B110226262E0900236EB3 /* UserPageViewController.swift */; };
 		FE8B111226265C7800236EB3 /* ChoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B111126265C7800236EB3 /* ChoreCollectionViewCell.swift */; };
 		FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B111526265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift */; };
+		FE8B11192626614200236EB3 /* ChoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B11182626614200236EB3 /* ChoreCellViewModel.swift */; };
+		FE8B111C26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B111B26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift */; };
+		FE8B111F262690F900236EB3 /* TitleHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8B111E262690F900236EB3 /* TitleHeaderCollectionReusableView.swift */; };
 		FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882BE2625F426004F0D1E /* SettingsModels.swift */; };
 		FEB882C22625F980004F0D1E /* HouseholdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882C12625F980004F0D1E /* HouseholdViewController.swift */; };
 		FEB882C52625FB0A004F0D1E /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */; };
@@ -62,6 +65,9 @@
 		FE8B110226262E0900236EB3 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		FE8B111126265C7800236EB3 /* ChoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE8B111526265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdMemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE8B11182626614200236EB3 /* ChoreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChoreCellViewModel.swift; path = Choreboard/Views/Home/ChoreCellViewModel.swift; sourceTree = SOURCE_ROOT; };
+		FE8B111B26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HouseholdMemberCellViewModel.swift; path = Choreboard/Views/Home/HouseholdMemberCellViewModel.swift; sourceTree = SOURCE_ROOT; };
+		FE8B111E262690F900236EB3 /* TitleHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		FEB882BE2625F426004F0D1E /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		FEB882C12625F980004F0D1E /* HouseholdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdViewController.swift; sourceTree = "<group>"; };
 		FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +88,8 @@
 		040CD17C2613C6570094D55D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FE8B11182626614200236EB3 /* ChoreCellViewModel.swift */,
+				FE8B111B26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -207,6 +215,7 @@
 			children = (
 				FE8B111126265C7800236EB3 /* ChoreCollectionViewCell.swift */,
 				FE8B111526265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift */,
+				FE8B111E262690F900236EB3 /* TitleHeaderCollectionReusableView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -346,6 +355,7 @@
 				048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */,
 				FE8B110326262E0900236EB3 /* UserPageViewController.swift in Sources */,
 				0477EA9D26124D40009DC747 /* AuthManager.swift in Sources */,
+				FE8B11192626614200236EB3 /* ChoreCellViewModel.swift in Sources */,
 				047F000C2612B6FC009EF15D /* SettingsViewController.swift in Sources */,
 				FEB882C22625F980004F0D1E /* HouseholdViewController.swift in Sources */,
 				047F00092612B6D1009EF15D /* ProfileViewController.swift in Sources */,
@@ -353,6 +363,7 @@
 				0477EAA526124D90009DC747 /* Household.swift in Sources */,
 				047F000626128FD6009EF15D /* TabBarViewController.swift in Sources */,
 				0477EAB026124DCC009DC747 /* User.swift in Sources */,
+				FE8B111C26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift in Sources */,
 				04E918BB26252AFF009469F0 /* SignUpViewController.swift in Sources */,
 				04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */,
 				FEB882C52625FB0A004F0D1E /* PrivacyViewController.swift in Sources */,
@@ -362,6 +373,7 @@
 				0477EAA126124D4D009DC747 /* APICaller.swift in Sources */,
 				FE8B111226265C7800236EB3 /* ChoreCollectionViewCell.swift in Sources */,
 				FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */,
+				FE8B111F262690F900236EB3 /* TitleHeaderCollectionReusableView.swift in Sources */,
 				FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */,
 				048E5B6F260BB139009978B4 /* SceneDelegate.swift in Sources */,
 			);
