@@ -21,6 +21,7 @@
 		048E5B76260BB13C009978B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B75260BB13C009978B4 /* Assets.xcassets */; };
 		048E5B79260BB13C009978B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */; };
 		04B904CA2625D3E8001551A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B904C92625D3E8001551A5 /* Extensions.swift */; };
+		04B904CE262635C1001551A5 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B904CD262635C1001551A5 /* EmailSignUpViewController.swift */; };
 		04DDB02426140890008E03EB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDB02326140890008E03EB /* WelcomeViewController.swift */; };
 		04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDB02D261420FD008E03EB /* AuthViewController.swift */; };
 		04E918B826252AD2009469F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E918B726252AD2009469F0 /* LoginViewController.swift */; };
@@ -56,6 +57,7 @@
 		048E5B7A260BB13C009978B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048E5B81260BB2A7009978B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		04B904C92625D3E8001551A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		04B904CD262635C1001551A5 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		04DDB02326140890008E03EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		04DDB02D261420FD008E03EB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		04E918B726252AD2009469F0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				FEB882C12625F980004F0D1E /* HouseholdViewController.swift */,
 				FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */,
 				FE8B110226262E0900236EB3 /* UserPageViewController.swift */,
+				04B904CD262635C1001551A5 /* EmailSignUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				FE8B111F262690F900236EB3 /* TitleHeaderCollectionReusableView.swift in Sources */,
 				FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */,
 				048E5B6F260BB139009978B4 /* SceneDelegate.swift in Sources */,
+				04B904CE262635C1001551A5 /* EmailSignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +450,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;

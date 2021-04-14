@@ -23,29 +23,46 @@ class SignUpViewController: UIViewController {
         view.addSubview(signUpOptions)
         
         NSLayoutConstraint.activate([
-            signUpOptions.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 70),
-            signUpOptions.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -70),
-            signUpOptions.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            signUpOptions.heightAnchor.constraint(equalToConstant: 60),
+            signUpOptions.widthAnchor.constraint(equalToConstant: 250),
+            signUpOptions.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
+            signUpOptions.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100)
         ])
         
         // MARK: Sign In with email
         let emailSignUp = UIButton(type: .custom)
+        emailSignUp.addTarget(self, action: #selector(pushEmailSignUp), for: .touchUpInside)
+        
         emailSignUp.translatesAutoresizingMaskIntoConstraints = false
-        emailSignUp.setTitle("Sign Up with Email", for: .normal)
         emailSignUp.setAttributedTitle(
             NSAttributedString(
                 string: "Sign Up with Email",
-                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]
+                attributes: [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18),
+                    NSAttributedString.Key.foregroundColor: UIColor.white
+                ]
             ),
             for: .normal
         )
+        emailSignUp.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         emailSignUp.layer.cornerRadius = 5
+        emailSignUp.backgroundColor = UIColor(hex: "#6EADE9")
         emailSignUp.layer.borderWidth = 1
         emailSignUp.layer.borderColor = UIColor(hex: "#6EADE9")!.cgColor
-        signUpOptions.addSubview(emailSignUp)
+        signUpOptions.addArrangedSubview(emailSignUp)
+        
+        NSLayoutConstraint.activate([
+            emailSignUp.heightAnchor.constraint(equalToConstant: 48),
+            emailSignUp.leadingAnchor.constraint(equalTo: signUpOptions.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            emailSignUp.trailingAnchor.constraint(equalTo: signUpOptions.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        ])
     }
     
-
+    @objc func pushEmailSignUp(_ sender: Any) {
+        self.navigationController!.pushViewController(EmailSignUpViewController(), animated: true)
+        // self.present(EmailSignUpViewController(), animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
