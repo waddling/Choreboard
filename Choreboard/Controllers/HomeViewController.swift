@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Choreboard
 //
 //  Created by Yeon Jun Kim on 3/24/21.
@@ -15,7 +15,7 @@ enum HomeSectionType {
     var title: String {
         switch self {
         case .chores:
-            return "Chores"
+            return "Household Chores"
         case .householdMembers:
             return "Household members"
         }
@@ -155,7 +155,7 @@ class HomeViewController: UIViewController {
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(360)
+                    heightDimension: .absolute(480)
                 ),
                 subitem: item,
                 count: 4
@@ -164,7 +164,7 @@ class HomeViewController: UIViewController {
             let horizontalGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.8),
-                    heightDimension: .absolute(360)
+                    heightDimension: .absolute(480)
                 ),
                 subitem: verticalGroup,
                 count: 1

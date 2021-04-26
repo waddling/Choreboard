@@ -1,21 +1,22 @@
 //
-//  ChoreCollectionViewCell.swift
+//  ProfileChoreCollectionViewCell.swift
 //  Choreboard
 //
-//  Created by Joseph Delle Donne on 4/13/21.
+//  Created by Joseph Delle Donne on 4/26/21.
 //
 
 import UIKit
 import SDWebImage
 
-class ChoreCollectionViewCell: UICollectionViewCell {
+class ProfileChoreCollectionViewCell: UICollectionViewCell {
     // set custom identifier
-    static let identifier = "ChoreCollectionViewCell"
+    static let identifier = "ProfileChoreCollectionViewCell"
+    var checked = false
     
     // for a picture example, see 25:45 of part 9 of the tutorial
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0 // lets text wrap if it needs to
+        label.numberOfLines = 1 // lets text wrap if it needs to
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
@@ -41,6 +42,14 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let checkboxImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "checkmark.square")
+        imageView.tintColor = .black
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     // Overridden functions
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,6 +57,7 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(createdByLabel)
         contentView.addSubview(creationDateLabel)
         contentView.addSubview(statusLabel)
+        contentView.addSubview(checkboxImageView)
     }
     
     required init?(coder: NSCoder) {
@@ -60,6 +70,7 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         createdByLabel.sizeToFit()
         creationDateLabel.sizeToFit()
         statusLabel.sizeToFit()
+        checkboxImageView.sizeToFit()
         
         createdByLabel.frame = CGRect(
             x: titleLabel.frame.minX + 5,
@@ -82,6 +93,12 @@ class ChoreCollectionViewCell: UICollectionViewCell {
             height: titleLabel.frame.height
         )
         
+        checkboxImageView.frame = CGRect(
+            x: titleLabel.frame.minX + 5,
+            y: titleLabel.frame.minY + 80,
+            width: 30,
+            height: 30
+        )
         
     }
     
@@ -94,11 +111,35 @@ class ChoreCollectionViewCell: UICollectionViewCell {
     }
     
     // Configure view model to view
-    func configure(with viewModel: ChoreCellViewModel) {
+    func configure(with viewModel: ProfileChoreCellViewModel) {
+        if (viewModel.status == "incomplete") {
+            checked = false
+            checkboxImageView.image = UIImage(systemName: "square")
+            backgroundColor = color.UIColorFromRGB(rgbValue: 0xE38686)
+        } else {
+            checked = true
+            checkboxImageView.image = UIImage(systemName: "checkmark.square")
+            backgroundColor = color.UIColorFromRGB(rgbValue: 0xB3D6C6)
+        }
+        
         titleLabel.text = viewModel.title
         createdByLabel.text = "Created by: \(viewModel.createdBy.name)"
         creationDateLabel.text = "Date added: \(viewModel.creationDate.description)"
         statusLabel.text = "Status: \(viewModel.status)"
+    }
+    
+    func isTapped() {
+        checked = !checked
+        print(checked)
+        if (checked) {
+            statusLabel.text = "Status: complete"
+            checkboxImageView.image = UIImage(systemName: "checkmark.square")
+            backgroundColor = color.UIColorFromRGB(rgbValue: 0xB3D6C6)
+        } else {
+            statusLabel.text = "Status: incomplete"
+            checkboxImageView.image = UIImage(systemName: "square")
+            backgroundColor = color.UIColorFromRGB(rgbValue: 0xE38686)
+        }
     }
     
 }

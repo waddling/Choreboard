@@ -36,6 +36,10 @@
 		FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882BE2625F426004F0D1E /* SettingsModels.swift */; };
 		FEB882C22625F980004F0D1E /* HouseholdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882C12625F980004F0D1E /* HouseholdViewController.swift */; };
 		FEB882C52625FB0A004F0D1E /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */; };
+		FEF61D9F2636EE3B0095F769 /* ProfileChoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61D9E2636EE3B0095F769 /* ProfileChoreCollectionViewCell.swift */; };
+		FEF61DA32636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DA22636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift */; };
+		FEF61DA62636EF290095F769 /* ProfileChoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DA52636EF290095F769 /* ProfileChoreCellViewModel.swift */; };
+		FEF61DA92636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DA82636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +77,10 @@
 		FEB882BE2625F426004F0D1E /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		FEB882C12625F980004F0D1E /* HouseholdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdViewController.swift; sourceTree = "<group>"; };
 		FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		FEF61D9E2636EE3B0095F769 /* ProfileChoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		FEF61DA22636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHouseholdMemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		FEF61DA52636EF290095F769 /* ProfileChoreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileChoreCellViewModel.swift; path = Choreboard/Views/Profile/ProfileChoreCellViewModel.swift; sourceTree = SOURCE_ROOT; };
+		FEF61DA82636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileHouseholdMemberCellViewModel.swift; path = Choreboard/Views/Profile/ProfileHouseholdMemberCellViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,8 @@
 			children = (
 				FE8B11182626614200236EB3 /* ChoreCellViewModel.swift */,
 				FE8B111B26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift */,
+				FEF61DA52636EF290095F769 /* ProfileChoreCellViewModel.swift */,
+				FEF61DA82636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -99,6 +109,7 @@
 		040CD17D2613C66D0094D55D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FEF61D9D2636EE200095F769 /* Profile */,
 				FE8B111026265BF300236EB3 /* Home */,
 				048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */,
 			);
@@ -221,6 +232,15 @@
 				FE8B111E262690F900236EB3 /* TitleHeaderCollectionReusableView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		FEF61D9D2636EE200095F769 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FEF61D9E2636EE3B0095F769 /* ProfileChoreCollectionViewCell.swift */,
+				FEF61DA22636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF61DA62636EF290095F769 /* ProfileChoreCellViewModel.swift in Sources */,
 				04E918B826252AD2009469F0 /* LoginViewController.swift in Sources */,
 				048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */,
 				FE8B110326262E0900236EB3 /* UserPageViewController.swift in Sources */,
@@ -365,6 +386,7 @@
 				048E5B6D260BB139009978B4 /* AppDelegate.swift in Sources */,
 				0477EAA526124D90009DC747 /* Household.swift in Sources */,
 				047F000626128FD6009EF15D /* TabBarViewController.swift in Sources */,
+				FEF61DA92636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift in Sources */,
 				0477EAB026124DCC009DC747 /* User.swift in Sources */,
 				FE8B111C26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift in Sources */,
 				04E918BB26252AFF009469F0 /* SignUpViewController.swift in Sources */,
@@ -374,11 +396,13 @@
 				0477EAAD26124DA6009DC747 /* Chore.swift in Sources */,
 				04DDB02426140890008E03EB /* WelcomeViewController.swift in Sources */,
 				0477EAA126124D4D009DC747 /* APICaller.swift in Sources */,
+				FEF61DA32636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift in Sources */,
 				FE8B111226265C7800236EB3 /* ChoreCollectionViewCell.swift in Sources */,
 				FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */,
 				FE8B111F262690F900236EB3 /* TitleHeaderCollectionReusableView.swift in Sources */,
 				FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */,
 				048E5B6F260BB139009978B4 /* SceneDelegate.swift in Sources */,
+				FEF61D9F2636EE3B0095F769 /* ProfileChoreCollectionViewCell.swift in Sources */,
 				04B904CE262635C1001551A5 /* EmailSignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,7 +474,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
