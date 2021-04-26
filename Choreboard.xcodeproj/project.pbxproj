@@ -40,6 +40,7 @@
 		FEF61DA32636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DA22636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift */; };
 		FEF61DA62636EF290095F769 /* ProfileChoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DA52636EF290095F769 /* ProfileChoreCellViewModel.swift */; };
 		FEF61DA92636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DA82636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift */; };
+		FEF61DAC263723E50095F769 /* FooterButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DAB263723E50095F769 /* FooterButtonCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		FEF61DA22636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHouseholdMemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		FEF61DA52636EF290095F769 /* ProfileChoreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileChoreCellViewModel.swift; path = Choreboard/Views/Profile/ProfileChoreCellViewModel.swift; sourceTree = SOURCE_ROOT; };
 		FEF61DA82636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileHouseholdMemberCellViewModel.swift; path = Choreboard/Views/Profile/ProfileHouseholdMemberCellViewModel.swift; sourceTree = SOURCE_ROOT; };
+		FEF61DAB263723E50095F769 /* FooterButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				FE8B111126265C7800236EB3 /* ChoreCollectionViewCell.swift */,
 				FE8B111526265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift */,
 				FE8B111E262690F900236EB3 /* TitleHeaderCollectionReusableView.swift */,
+				FEF61DAB263723E50095F769 /* FooterButtonCollectionViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */,
 				FE8B111F262690F900236EB3 /* TitleHeaderCollectionReusableView.swift in Sources */,
 				FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */,
+				FEF61DAC263723E50095F769 /* FooterButtonCollectionViewCell.swift in Sources */,
 				048E5B6F260BB139009978B4 /* SceneDelegate.swift in Sources */,
 				FEF61D9F2636EE3B0095F769 /* ProfileChoreCollectionViewCell.swift in Sources */,
 				04B904CE262635C1001551A5 /* EmailSignUpViewController.swift in Sources */,

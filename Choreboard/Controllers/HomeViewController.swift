@@ -24,15 +24,6 @@ enum HomeSectionType {
 
 class HomeViewController: UIViewController {
     
-//    let userRealm: Realm
-//    init(userRealm: Realm) {
-//        self.userRealm = userRealm
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
             return HomeViewController.createSectionLayout(section: sectionIndex)
@@ -80,6 +71,8 @@ class HomeViewController: UIViewController {
             )
         })))
         
+        
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
@@ -88,6 +81,8 @@ class HomeViewController: UIViewController {
         
         // Order here matters! add subviews after collection views
         configureCollectionView()
+        
+        
         view.addSubview(spinner)
         // fetch data goes here
         
@@ -101,6 +96,7 @@ class HomeViewController: UIViewController {
     
     
     private func configureCollectionView() {
+        print("here")
         view.addSubview(collectionView)
         collectionView.register(UICollectionViewCell.self,
                                 forCellWithReuseIdentifier: "cell")
@@ -116,6 +112,12 @@ class HomeViewController: UIViewController {
             TitleHeaderCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: TitleHeaderCollectionReusableView.identifier
+        )
+        
+        collectionView.register(
+            UICollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: TitleFooterCollectionReusableView.identifier
         )
         
         collectionView.dataSource = self
@@ -134,6 +136,14 @@ class HomeViewController: UIViewController {
                 ),
                 elementKind: UICollectionView.elementKindSectionHeader,
                 alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(50)
+                ),
+                elementKind: UICollectionView.elementKindSectionFooter,
+                alignment: .bottom
             )
         ]
         
@@ -261,6 +271,29 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        if kind == UICollectionView.elementKindSectionFooter {
+            print("footer")
+            let footer = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionFooter,
+                withReuseIdentifier: TitleFooterCollectionReusableView.identifier,
+                for: indexPath
+            )
+            // Only do this footer for the first section
+            if (indexPath.section == 0) {
+                print("made button")
+                let addButton = UIButton()
+                addButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+                addButton.backgroundColor = .systemRed
+                addButton.frame = CGRect(x: 2, y: 15, width: 100, height: 30)
+                addButton.setTitle("Add Chore", for: .normal)
+                footer.addSubview(addButton)
+                return footer
+            }
+            return footer
+        }
+        print("header")
+        
         guard let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: TitleHeaderCollectionReusableView.identifier,
@@ -272,6 +305,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let title = sections[section].title
         header.configure(with: title)
         return header
+    }
+    
+    @objc func buttonAction() {
+        print("Button pressed")
+        let vc = HouseholdViewController()
+        vc.title = "Household"
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

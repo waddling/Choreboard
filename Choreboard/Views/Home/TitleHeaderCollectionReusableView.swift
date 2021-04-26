@@ -38,3 +38,31 @@ class TitleHeaderCollectionReusableView: UICollectionReusableView {
     }
         
 }
+
+class TitleFooterCollectionReusableView: UICollectionReusableView {
+    static let identifier = "TitleFooterCollectionReusableView"
+    
+    private let addButton: UIButton = {
+        let addButton = UIButton()
+        return addButton
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(addButton)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        addButton.frame = CGRect(x: 2, y: 15, width: 100, height: 30)
+    }
+    
+    func configure(with title: String) {
+        addButton.setTitle("Add Chore", for: .normal)
+    }
+        
+}

@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  ProfileViewController.swift
 //  Choreboard
 //
 //  Created by Yeon Jun Kim on 3/24/21.
@@ -35,15 +35,6 @@ class color:NSObject
 }
 
 class ProfileViewController: UIViewController {
-    
-//    let userRealm: Realm
-//    init(userRealm: Realm) {
-//        self.userRealm = userRealm
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
@@ -317,6 +308,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                 //choresList[indexPath.item].status = "yeet"
                 cell.isTapped()
                 //collectionView.reloadData()
+                // TODO: Send updated data to database
             }
         case .householdMembers(_):
             ()

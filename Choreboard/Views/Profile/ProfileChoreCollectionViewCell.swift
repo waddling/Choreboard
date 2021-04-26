@@ -130,7 +130,6 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
     
     func isTapped() {
         checked = !checked
-        print(checked)
         if (checked) {
             statusLabel.text = "Status: complete"
             checkboxImageView.image = UIImage(systemName: "checkmark.square")

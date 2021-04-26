@@ -13,7 +13,7 @@ class ProfileHouseholdMemberCollectionViewCell: UICollectionViewCell {
     // for a picture example, see 25:45 of part 9 of the tutorial
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0 // lets text wrap if it needs to
+        label.numberOfLines = 1 // lets text wrap if it needs to
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
