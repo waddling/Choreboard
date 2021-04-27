@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 enum ProfileSectionType {
-    case chores(viewModels: [ProfileChoreCellViewModel])                       // 0
+    case chores(viewModels: [ChoreCellViewModel])                       // 0
     case householdMembers(viewModels: [ProfileHouseholdMemberCellViewModel])   // 1
     
     var title: String {
@@ -50,30 +50,41 @@ class ProfileViewController: UIViewController {
     }()
     
     private var sections = [ProfileSectionType]()
-    var choresList = [Chore]()
-    var usersList = [User]()
+    //var usersList = [User]()
     
     func reloadSections() {
         sections = [ProfileSectionType]()
-        sections.append(.chores(viewModels: choresList.compactMap({
-            return ProfileChoreCellViewModel(
+        sections.append(.chores(viewModels: choresList.chores.value!.compactMap({
+            return ChoreCellViewModel(
                 title: $0.title,
                 assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
                 creationDate: $0.creationDate,
                 status: $0.status)
         })))
-        sections.append(.householdMembers(viewModels: usersList.compactMap({
+        sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return ProfileHouseholdMemberCellViewModel(
                 name: $0.name
             )
         })))
         collectionView.reloadData()
-        // TODO: find a way to reload data in HomeViewController here
     }
     
     override func viewDidLoad() {
         
+        // Listen to choresList ViewModel, reload whenever something changes
+        choresList.chores.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadSections()
+            }
+        }
+        choresList.users.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadSections()
+            }
+        }
+        
         // Populate dummy chore data
+        /*
         choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 1, status: "complete"))
         choresList.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim"), assignedTo: User(name: "John Holland"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
         choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Yeon Kim"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
@@ -87,16 +98,17 @@ class ProfileViewController: UIViewController {
         usersList.append(User(name: "TJ Silva"))
         usersList.append(User(name: "John Holland"))
         usersList.append(User(name: "Liam Karr"))
+        */
         
         // Put dummy data into sections
-        sections.append(.chores(viewModels: choresList.compactMap({
-            return ProfileChoreCellViewModel(
+        sections.append(.chores(viewModels: choresList.chores.value!.compactMap({
+            return ChoreCellViewModel(
                 title: $0.title,
                 assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
                 creationDate: $0.creationDate,
                 status: $0.status)
         })))
-        sections.append(.householdMembers(viewModels: usersList.compactMap({
+        sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return ProfileHouseholdMemberCellViewModel(
                 name: $0.name
             )
@@ -111,7 +123,7 @@ class ProfileViewController: UIViewController {
         // Order here matters! add subviews after collection views
         configureCollectionView()
         view.addSubview(spinner)
-        // fetch data goes here
+        // fetch data goes here?
         
     }
     
@@ -119,8 +131,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
-    
-    
     
     private func configureCollectionView() {
         view.addSubview(collectionView)
@@ -327,10 +337,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // Alter tapped chore data
                 if (!cell.checked) {
                     // Now incomplete, tapped while checked, make incomplete
-                    choresList[indexPath.item].status = "incomplete"
+                    choresList.chores.value![indexPath.item].status = "incomplete"
+                    choresList.users.value!.append(User(name: "<temp>"))
+                    _ = choresList.users.value!.popLast()
                 } else {
                     // Now complete, tapped while unchecked, make complete
-                    choresList[indexPath.item].status = "complete"
+                    choresList.chores.value![indexPath.item].status = "complete"
+                    choresList.users.value!.append(User(name: "<temp>"))
+                    _ = choresList.users.value!.popLast()
                 }
                 reloadSections()
                 // YEON TODO: Send updated data to database

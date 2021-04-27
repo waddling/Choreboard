@@ -8,6 +8,33 @@
 import UIKit
 import RealmSwift
 
+// Observable
+class Observable<T> {
+    var value: T? {
+        didSet {
+            listeners.forEach {
+                $0(value)
+            }
+        }
+    }
+    
+    init(_ value: T?) {
+        self.value = value
+    }
+    
+    private var listeners: [((T?) -> Void)] = []
+    
+    func bind(_ listener: @escaping (T?) -> Void) {
+        listener(value)
+        self.listeners.append(listener)
+    }
+}
+
+struct ChoreListViewModel {
+    var chores: Observable<[Chore]> = Observable([])
+    var users: Observable<[User]> = Observable([])
+}
+
 enum HomeSectionType {
     case chores(viewModels: [ChoreCellViewModel])                       // 0
     case householdMembers(viewModels: [HouseholdMemberCellViewModel])   // 1
@@ -21,6 +48,8 @@ enum HomeSectionType {
         }
     }
 }
+
+var choresList = ChoreListViewModel()
 
 class HomeViewController: UIViewController {
     
@@ -38,53 +67,62 @@ class HomeViewController: UIViewController {
     }()
     
     private var sections = [HomeSectionType]()
-    var choresList = [Chore]()
-    var usersList = [User]()
     
     func reloadSections() {
         sections = [HomeSectionType]()
-        sections.append(.chores(viewModels: choresList.compactMap({
+        sections.append(.chores(viewModels: choresList.chores.value!.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
                 assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
                 creationDate: $0.creationDate,
                 status: $0.status)
         })))
-        sections.append(.householdMembers(viewModels: usersList.compactMap({
+        sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return HouseholdMemberCellViewModel(
                 name: $0.name
             )
         })))
         collectionView.reloadData()
-        // TODO: find a way to reload sections in ProfileViewController
     }
     
     override func viewDidLoad() {
         
+        // Listen to choresList ViewModel, reload whenever something changes
+        choresList.chores.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadSections()
+            }
+        }
+        choresList.users.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadSections()
+            }
+        }
+        
         // Populate dummy chore data
-        choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 1, status: "complete"))
-        choresList.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim"), assignedTo: User(name: "John Holland"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Yeon Kim"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Do dishes again", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "complete"))
-        choresList.append(Chore(partition: "part", title: "Sweep floor", createdBy: User(name: "John Holland"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr"), assignedTo: User(name: "Liam Karr"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 1, status: "complete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim"), assignedTo: User(name: "John Holland"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Yeon Kim"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes again", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "complete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Sweep floor", createdBy: User(name: "John Holland"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr"), assignedTo: User(name: "Liam Karr"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
         
         // Populate dummy household members data
-        usersList.append(User(name: "Joe Delle Donne"))
-        usersList.append(User(name: "Yeon Kim"))
-        usersList.append(User(name: "TJ Silva"))
-        usersList.append(User(name: "John Holland"))
-        usersList.append(User(name: "Liam Karr"))
+        choresList.users.value!.append(User(name: "Joe Delle Donne"))
+        choresList.users.value!.append(User(name: "Yeon Kim"))
+        choresList.users.value!.append(User(name: "TJ Silva"))
+        choresList.users.value!.append(User(name: "John Holland"))
+        choresList.users.value!.append(User(name: "Liam Karr"))
         
         // put dummy data into sections
-        sections.append(.chores(viewModels: choresList.compactMap({
+        sections.append(.chores(viewModels: choresList.chores.value!.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
                 assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
                 creationDate: $0.creationDate,
                 status: $0.status)
         })))
-        sections.append(.householdMembers(viewModels: usersList.compactMap({
+        sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return HouseholdMemberCellViewModel(
                 name: $0.name
             )
@@ -100,6 +138,8 @@ class HomeViewController: UIViewController {
         configureCollectionView()
         view.addSubview(spinner)
         // fetch data goes here?
+        
+        
         
     }
     

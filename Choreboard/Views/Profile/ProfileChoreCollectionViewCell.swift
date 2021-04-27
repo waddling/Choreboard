@@ -111,7 +111,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
     }
     
     // Configure view model to view
-    func configure(with viewModel: ProfileChoreCellViewModel) {
+    func configure(with viewModel: ChoreCellViewModel) {
         if (viewModel.status == "incomplete") {
             checked = false
             checkboxImageView.image = UIImage(systemName: "square")

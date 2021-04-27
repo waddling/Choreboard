@@ -120,7 +120,7 @@ class AddChoreViewController: UIViewController {
                           repeating: false,
                           points: Int(points) ?? 0,
                           status: "incomplete")
-        home.choresList.append(chore)
+        choresList.chores.value!.append(chore)
         home.reloadSections()
         
         // Navigate back to Home Controller when done

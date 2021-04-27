@@ -97,7 +97,7 @@ class ChoreCollectionViewCell: UICollectionViewCell {
     func configure(with viewModel: ChoreCellViewModel) {
         titleLabel.text = viewModel.title
         assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name)"
-        creationDateLabel.text = "Date added: \(viewModel.creationDate.description.split(separator: " ")[0] + " " + viewModel.creationDate.description.split(separator: " ")[1])"
+        creationDateLabel.text = "Date added: \(viewModel.creationDate.description.split(separator: " ")[0] + viewModel.creationDate.description.split(separator: " ")[1])"
         statusLabel.text = "Status: \(viewModel.status)"
     }
     
