@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
         sections.append(.chores(viewModels: choresList.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                createdBy: $0.createdBy ?? User(name: "Joe Delle Donne"),
+                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
                 creationDate: $0.creationDate,
                 status: $0.status)
         })))
@@ -63,11 +63,11 @@ class HomeViewController: UIViewController {
         
         // Populate dummy chore data
         choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 1, status: "complete"))
-        choresList.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        choresList.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim"), assignedTo: User(name: "John Holland"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
+        choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Yeon Kim"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
         choresList.append(Chore(partition: "part", title: "Do dishes again", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "complete"))
         choresList.append(Chore(partition: "part", title: "Sweep floor", createdBy: User(name: "John Holland"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        choresList.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr"), assignedTo: User(name: "Liam Karr"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
         
         // Populate dummy household members data
         usersList.append(User(name: "Joe Delle Donne"))
@@ -80,7 +80,7 @@ class HomeViewController: UIViewController {
         sections.append(.chores(viewModels: choresList.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                createdBy: $0.createdBy ?? User(name: "Joe Delle Donne"),
+                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
                 creationDate: $0.creationDate,
                 status: $0.status)
         })))

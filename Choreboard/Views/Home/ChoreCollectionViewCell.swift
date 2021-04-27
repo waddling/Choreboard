@@ -20,7 +20,7 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let createdByLabel: UILabel = {
+    private let assignedToLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0 // lets text wrap if it needs to
         label.font = .systemFont(ofSize: 12, weight: .light)
@@ -45,7 +45,7 @@ class ChoreCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(createdByLabel)
+        contentView.addSubview(assignedToLabel)
         contentView.addSubview(creationDateLabel)
         contentView.addSubview(statusLabel)
     }
@@ -57,11 +57,11 @@ class ChoreCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         titleLabel.sizeToFit()
-        createdByLabel.sizeToFit()
+        assignedToLabel.sizeToFit()
         creationDateLabel.sizeToFit()
         statusLabel.sizeToFit()
         
-        createdByLabel.frame = CGRect(
+        assignedToLabel.frame = CGRect(
             x: titleLabel.frame.minX + 5,
             y: titleLabel.frame.minY + 20,
             width: 300,
@@ -88,7 +88,7 @@ class ChoreCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLabel.text = nil
-        createdByLabel.text = nil
+        assignedToLabel.text = nil
         creationDateLabel.text = nil
         statusLabel.text = nil
     }
@@ -96,8 +96,8 @@ class ChoreCollectionViewCell: UICollectionViewCell {
     // Configure view model to view
     func configure(with viewModel: ChoreCellViewModel) {
         titleLabel.text = viewModel.title
-        createdByLabel.text = "Created by: \(viewModel.createdBy.name)"
-        creationDateLabel.text = "Date added: \(viewModel.creationDate.description)"
+        assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name)"
+        creationDateLabel.text = "Date added: \(viewModel.creationDate.description.split(separator: " ")[0] + " " + viewModel.creationDate.description.split(separator: " ")[1])"
         statusLabel.text = "Status: \(viewModel.status)"
     }
     

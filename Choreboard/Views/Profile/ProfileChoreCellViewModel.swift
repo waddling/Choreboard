@@ -9,7 +9,7 @@ import Foundation
 
 struct ProfileChoreCellViewModel {
     let title: String
-    let createdBy: User
+    let assignedTo: User
     let creationDate: Date
     let status: String
 }
