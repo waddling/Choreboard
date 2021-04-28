@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddChoreViewController: UIViewController {
+class AddChoreViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // Dependency Injection: required to access HomeViewCOntroller methods and vars
     private let home: HomeViewController
@@ -19,6 +19,7 @@ class AddChoreViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // User input: Chore title definition
     private let titleField: UITextField = {
        let field = UITextField()
         field.placeholder = "Chore title..."
@@ -35,20 +36,14 @@ class AddChoreViewController: UIViewController {
         return field
     }()
     
-    /*
-     TODO: Add the "Assign to..." section as a dropdown menu
-     Tutorial: https://www.youtube.com/watch?v=-tpJMQRSl_o&ab_channel=iOSAcademy
-     */
-    
+    // User input: Points definition
     private let pointsField: UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         field.placeholder = "Points..."
         field.returnKeyType = .next
         field.keyboardType = .numberPad
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-        // field.autocapitalizationType = .none
-        // field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = 8.0
         field.backgroundColor = .secondarySystemBackground
@@ -57,6 +52,58 @@ class AddChoreViewController: UIViewController {
         return field
     }()
     
+    // User input: Assigned user picker definition
+    private let userPicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.backgroundColor = .secondarySystemBackground
+        picker.layer.borderWidth = 0.5
+        picker.layer.cornerRadius = 8.0
+        picker.tintColor = .blue
+        return picker
+    }()
+    
+    private let userPickerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Assign to:"
+        return label
+    }()
+    
+    var usersDict: [String:User] = { () -> [String:User] in
+        var userDict = [:] as [String:User]
+        for user in choresList.users.value! {
+            userDict[user.name] = user
+        }
+        return userDict
+    }()
+    
+    var usersList: [String] = { () -> [String] in
+        var userNames = [] as [String]
+        for user in choresList.users.value! {
+            userNames.append(user.name)
+        }
+        return userNames
+    }()
+    
+    var selectedUser = ""
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return usersList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return usersList[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.selectedUser = usersList[row]
+        print(self.selectedUser)
+    }
+    
+    // Submit button definition
     private let submitButton: UIButton = {
        let button = UIButton()
         button.setTitle("Add Chore", for: .normal)
@@ -80,9 +127,16 @@ class AddChoreViewController: UIViewController {
         titleField.delegate = self
         pointsField.delegate = self
         
+        // Picker view initializations
+        userPicker.delegate = self
+        userPicker.dataSource = self
+        selectedUser = usersList[0]
+        
         // Add subviews
         view.addSubview(titleField)
         view.addSubview(pointsField)
+        view.addSubview(userPickerLabel)
+        view.addSubview(userPicker)
         view.addSubview(submitButton)
     }
     
@@ -92,7 +146,9 @@ class AddChoreViewController: UIViewController {
         // Position frames
         titleField.frame = CGRect(x: 20, y: view.safeAreaInsets.top+10, width: view.frame.size.width-40, height: 52)
         pointsField.frame = CGRect(x: 20, y: titleField.frame.maxY+10, width: view.frame.size.width-40, height: 52)
-        submitButton.frame = CGRect(x: 20, y: pointsField.frame.maxY+10, width: view.frame.size.width-40, height: 52)
+        userPickerLabel.frame = CGRect(x: 20, y: pointsField.frame.maxY+15, width: view.frame.size.width-40, height: 20)
+        userPicker.frame = CGRect(x: 20, y: userPickerLabel.frame.maxY+10, width: view.frame.size.width-40, height: 100)
+        submitButton.frame = CGRect(x: 20, y: userPicker.frame.maxY+10, width: view.frame.size.width-40, height: 52)
     }
     
     @objc private func didTapSubmit() {
@@ -108,14 +164,16 @@ class AddChoreViewController: UIViewController {
               }
         
         // Print inputted data
+        print("\n-- NEW CHORE --")
         print("Title: ", title)
         print("Points: ", points)
+        print("Assigned to: ", usersDict[selectedUser] ?? User(name: "ERROR"))
         
         // Process data, create new chore from input
         let chore = Chore(partition: "part",
                           title: title,
                           createdBy: User(name: "Joe Delle Donne"),
-                          assignedTo: User(name: "Joe Delle Donne"),
+                          assignedTo: usersDict[selectedUser] ?? User(name: "ERROR"),
                           dueDate: Date(),
                           repeating: false,
                           points: Int(points) ?? 0,
