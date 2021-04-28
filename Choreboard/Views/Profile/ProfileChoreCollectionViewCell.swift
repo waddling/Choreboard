@@ -12,6 +12,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
     // set custom identifier
     static let identifier = "ProfileChoreCollectionViewCell"
     var checked = false
+    var globalIndex = 0
     
     // for a picture example, see 25:45 of part 9 of the tutorial
     private let titleLabel: UILabel = {
@@ -111,7 +112,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
     }
     
     // Configure view model to view
-    func configure(with viewModel: ChoreCellViewModel) {
+    func configure(with viewModel: ChoreCellViewModel, index: Int) {
         if (viewModel.status == "incomplete") {
             checked = false
             checkboxImageView.image = UIImage(systemName: "square")
@@ -126,6 +127,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
         assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name)"
         creationDateLabel.text = "Date added: \(viewModel.creationDate.description.split(separator: " ")[0] + " " + viewModel.creationDate.description.split(separator: " ")[1])"
         statusLabel.text = "Status: \(viewModel.status)"
+        self.globalIndex = index
     }
     
     func isTapped() {

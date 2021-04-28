@@ -38,6 +38,7 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0 // lets text wrap if it needs to
         label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.layer.cornerRadius = 8.0
         return label
     }()
     
@@ -77,8 +78,8 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         
         statusLabel.frame = CGRect(
             x: titleLabel.frame.minX + 5,
-            y: titleLabel.frame.minY + 60,
-            width: 300,
+            y: titleLabel.frame.minY + 65,
+            width: 100,
             height: titleLabel.frame.height
         )
         
@@ -98,7 +99,18 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         titleLabel.text = viewModel.title
         assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name)"
         creationDateLabel.text = "Date added: \(viewModel.creationDate.description.split(separator: " ")[0] + viewModel.creationDate.description.split(separator: " ")[1])"
-        statusLabel.text = "Status: \(viewModel.status)"
+        statusLabel.text = "\(viewModel.status)"
+        statusLabel.sizeToFit()
+        statusLabel.layer.masksToBounds = true
+        statusLabel.layer.cornerRadius = 8.0
+        statusLabel.textAlignment = NSTextAlignment(.center)
+        statusLabel.layer.borderWidth = 1
+        if viewModel.status == "complete" {
+            statusLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xB3D6C6)
+        } else {
+            statusLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xE38686)
+        }
+        
     }
     
 }
