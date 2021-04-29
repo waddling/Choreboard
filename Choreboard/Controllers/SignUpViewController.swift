@@ -11,7 +11,6 @@ class SignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "Sign Up"
         view.backgroundColor = .systemBackground
         
@@ -21,7 +20,6 @@ class SignUpViewController: UIViewController {
         signUpOptions.alignment = .fill
         signUpOptions.spacing = 10.0
         view.addSubview(signUpOptions)
-        
         NSLayoutConstraint.activate([
             signUpOptions.heightAnchor.constraint(equalToConstant: 60),
             signUpOptions.widthAnchor.constraint(equalToConstant: 250),
@@ -29,7 +27,7 @@ class SignUpViewController: UIViewController {
             signUpOptions.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100)
         ])
         
-        // MARK: Sign In with email
+        // MARK: Sign Up with Email
         let emailSignUp = UIButton(type: .custom)
         emailSignUp.addTarget(self, action: #selector(pushEmailSignUp), for: .touchUpInside)
         
@@ -38,7 +36,7 @@ class SignUpViewController: UIViewController {
             NSAttributedString(
                 string: "Sign Up with Email",
                 attributes: [
-                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18),
+                    NSAttributedString.Key.font: UIFont(name: "Lato-Regular", size: 18)!,
                     NSAttributedString.Key.foregroundColor: UIColor.white
                 ]
             ),
@@ -50,12 +48,6 @@ class SignUpViewController: UIViewController {
         emailSignUp.layer.borderWidth = 1
         emailSignUp.layer.borderColor = UIColor(hex: "#6EADE9")!.cgColor
         signUpOptions.addArrangedSubview(emailSignUp)
-        
-        NSLayoutConstraint.activate([
-            emailSignUp.heightAnchor.constraint(equalToConstant: 48),
-            emailSignUp.leadingAnchor.constraint(equalTo: signUpOptions.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            emailSignUp.trailingAnchor.constraint(equalTo: signUpOptions.safeAreaLayoutGuide.trailingAnchor, constant: -10)
-        ])
     }
     
     @objc func pushEmailSignUp(_ sender: Any) {

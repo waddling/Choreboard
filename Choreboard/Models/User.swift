@@ -11,8 +11,11 @@ import RealmSwift
 class User: Object {
     @objc dynamic var _id: String = ""
     @objc dynamic var _partition: String = ""
-    @objc dynamic var name: String = ""
-    let memberOf = RealmSwift.List<Household>()
+    @objc dynamic var email: String = ""
+    @objc dynamic var name: String? = nil
+    let households = LinkingObjects(fromType: Household.self, property: "members")
+    @objc dynamic var firstTimeSetup: Bool = true
+    
     override static func primaryKey() -> String? {
         return "_id"
     }

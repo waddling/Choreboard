@@ -1,17 +1,17 @@
 //
-//  EmailSignUpViewController.swift
+//  EmailSignInViewController.swift
 //  Choreboard
 //
-//  Created by Yeon Jun Kim on 4/13/21.
+//  Created by Yeon Jun Kim on 4/14/21.
 //
 
 import UIKit
 import RealmSwift
 
-class EmailSignUpViewController: UIViewController {
+class EmailSignInViewController: UIViewController {
     let emailField = UITextField()
     let passwordField = UITextField()
-    let signUpButton = UIButton(type: .custom)
+    let signInButton = UIButton(type: .custom)
     let errorLabel = UILabel()
     let activityIndicator = UIActivityIndicatorView(style: .medium)
     
@@ -64,12 +64,12 @@ class EmailSignUpViewController: UIViewController {
         passwordField.borderStyle = .roundedRect
         container.addArrangedSubview(passwordField)
         
-        signUpButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+        signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
         
-        signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        signUpButton.setAttributedTitle(
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        signInButton.setAttributedTitle(
             NSAttributedString(
-                string: "Sign Up",
+                string: "Sign In",
                 attributes: [
                     NSAttributedString.Key.font: UIFont(name: "Lato-Regular", size: 18)!,
                     NSAttributedString.Key.foregroundColor: UIColor.white
@@ -77,16 +77,21 @@ class EmailSignUpViewController: UIViewController {
             ),
             for: .normal
         )
-        signUpButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        signUpButton.layer.cornerRadius = 5
-        signUpButton.backgroundColor = UIColor(hex: "#6EADE9")
-        signUpButton.layer.borderWidth = 1
-        signUpButton.layer.borderColor = UIColor(hex: "#6EADE9")!.cgColor
-        container.addArrangedSubview(signUpButton)
+        signInButton.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        signInButton.layer.cornerRadius = 5
+        signInButton.backgroundColor = UIColor(hex: "#6EADE9")
+        signInButton.layer.borderWidth = 1
+        signInButton.layer.borderColor = UIColor(hex: "#6EADE9")!.cgColor
+        container.addArrangedSubview(signInButton)
         
         errorLabel.numberOfLines = 0
         errorLabel.textColor = .red
         container.addArrangedSubview(errorLabel)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        emailField.text = ""
+        passwordField.text = ""
     }
     
     func setLoading(_ loading: Bool) {
@@ -98,30 +103,7 @@ class EmailSignUpViewController: UIViewController {
         }
         emailField.isEnabled = !loading
         passwordField.isEnabled = !loading
-        signUpButton.isEnabled = !loading
-    }
-    
-    @objc func signUp() {
-        setLoading(true)
-        app.emailPasswordAuth.registerUser(email: email!, password: password!, completion: { [weak self](error) in
-            // Completion handlers are not necessarily called on the UI thread.
-            // This call to DispatchQueue.main.async ensures that any changes to the UI,
-            // namely disabling the loading indicator and navigating to the next page,
-            // are handled on the UI thread:
-            DispatchQueue.main.async {
-                self!.setLoading(false)
-                guard error == nil else {
-                    print("Signup failed: \(error!)")
-                    self!.errorLabel.text = "Signup failed: \(error!.localizedDescription)"
-                    return
-                }
-                print("Signup successful!")
-
-                // Registering just registers. Now we need to sign in, but we can reuse the existing email and password.
-                self!.errorLabel.text = "Signup successful! Signing in..."
-                self!.signIn()
-            }
-        })
+        signInButton.isEnabled = !loading
     }
     
     @objc func signIn() {
@@ -161,10 +143,11 @@ class EmailSignUpViewController: UIViewController {
                             switch result {
                             case .failure(let error):
                                 fatalError("Failed to open realm: \(error)")
-                            case .success(let realm):
-                                print("Succussfully opened realm: \(realm)")
-                                if user.customData["firstTimeSetup"] == AnyBSON(true) {
+                            case .success(let userRealm):
+                                print("Succussfully opened realm: \(userRealm)")
+                                if (user.customData["firstTimeSetup"] ?? AnyBSON(true)) == AnyBSON(true) {
                                     print("First Time Setup")
+                                    self!.navigationController!.pushViewController(SetupViewController(userRealm: userRealm), animated: true)
                                 } else {
                                     print("Not First Time Setup")
                                     // Go to the list of projects in the user object contained in the user realm.
@@ -179,6 +162,7 @@ class EmailSignUpViewController: UIViewController {
         }
     }
     
+
     /*
     // MARK: - Navigation
 

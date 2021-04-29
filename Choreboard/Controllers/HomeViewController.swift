@@ -67,7 +67,7 @@ class HomeViewController: UIViewController {
         })))
         sections.append(.householdMembers(viewModels: usersList.compactMap({
             return HouseholdMemberCellViewModel(
-                name: $0.name
+                name: $0.name ?? "John Doe"
             )
         })))
         

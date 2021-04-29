@@ -20,6 +20,15 @@
 		048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E5B70260BB139009978B4 /* HomeViewController.swift */; };
 		048E5B76260BB13C009978B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B75260BB13C009978B4 /* Assets.xcassets */; };
 		048E5B79260BB13C009978B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */; };
+		04A77F8A262B6E640023975C /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A77F89262B6E640023975C /* SetupViewController.swift */; };
+		04A77F91262CDCBD0023975C /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F8D262CDCBD0023975C /* Lato-Italic.ttf */; };
+		04A77F92262CDCBD0023975C /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F8E262CDCBD0023975C /* Lato-Light.ttf */; };
+		04A77F93262CDCBD0023975C /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F8F262CDCBD0023975C /* Lato-Regular.ttf */; };
+		04A77F94262CDCBD0023975C /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F90262CDCBD0023975C /* Lato-LightItalic.ttf */; };
+		04A77F98262CFD220023975C /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F96262CFD220023975C /* Quicksand-Regular.ttf */; };
+		04A77F99262CFD220023975C /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F97262CFD220023975C /* Quicksand-SemiBold.ttf */; };
+		04B798A32627C48C0095AE2E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B798A22627C48C0095AE2E /* SignInViewController.swift */; };
+		04B798A62627C6330095AE2E /* EmailSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B798A52627C6330095AE2E /* EmailSignInViewController.swift */; };
 		04B904CA2625D3E8001551A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B904C92625D3E8001551A5 /* Extensions.swift */; };
 		04B904CE262635C1001551A5 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B904CD262635C1001551A5 /* EmailSignUpViewController.swift */; };
 		04DDB02426140890008E03EB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DDB02326140890008E03EB /* WelcomeViewController.swift */; };
@@ -61,6 +70,15 @@
 		048E5B78260BB13C009978B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048E5B7A260BB13C009978B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048E5B81260BB2A7009978B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04A77F89262B6E640023975C /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		04A77F8D262CDCBD0023975C /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
+		04A77F8E262CDCBD0023975C /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		04A77F8F262CDCBD0023975C /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		04A77F90262CDCBD0023975C /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		04A77F96262CFD220023975C /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		04A77F97262CFD220023975C /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		04B798A22627C48C0095AE2E /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		04B798A52627C6330095AE2E /* EmailSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInViewController.swift; sourceTree = "<group>"; };
 		04B904C92625D3E8001551A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04B904CD262635C1001551A5 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		04DDB02326140890008E03EB /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +139,7 @@
 		040CD17E2613C6DD0094D55D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04A77F8C262CDBFE0023975C /* Fonts */,
 				048E5B6C260BB139009978B4 /* AppDelegate.swift */,
 				048E5B6E260BB139009978B4 /* SceneDelegate.swift */,
 				048E5B75260BB13C009978B4 /* Assets.xcassets */,
@@ -155,14 +174,17 @@
 				047F00082612B6D1009EF15D /* ProfileViewController.swift */,
 				048E5B70260BB139009978B4 /* HomeViewController.swift */,
 				047F000B2612B6FC009EF15D /* SettingsViewController.swift */,
-				04DDB02326140890008E03EB /* WelcomeViewController.swift */,
 				04DDB02D261420FD008E03EB /* AuthViewController.swift */,
 				04E918B726252AD2009469F0 /* LoginViewController.swift */,
-				04E918BA26252AFF009469F0 /* SignUpViewController.swift */,
 				FEB882C12625F980004F0D1E /* HouseholdViewController.swift */,
 				FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */,
 				FE8B110226262E0900236EB3 /* UserPageViewController.swift */,
+				04DDB02326140890008E03EB /* WelcomeViewController.swift */,
+				04E918BA26252AFF009469F0 /* SignUpViewController.swift */,
 				04B904CD262635C1001551A5 /* EmailSignUpViewController.swift */,
+				04B798A22627C48C0095AE2E /* SignInViewController.swift */,
+				04B798A52627C6330095AE2E /* EmailSignInViewController.swift */,
+				04A77F89262B6E640023975C /* SetupViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +221,19 @@
 				048E5B7A260BB13C009978B4 /* Info.plist */,
 			);
 			path = Choreboard;
+			sourceTree = "<group>";
+		};
+		04A77F8C262CDBFE0023975C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				04A77F96262CFD220023975C /* Quicksand-Regular.ttf */,
+				04A77F97262CFD220023975C /* Quicksand-SemiBold.ttf */,
+				04A77F8D262CDCBD0023975C /* Lato-Italic.ttf */,
+				04A77F8E262CDCBD0023975C /* Lato-Light.ttf */,
+				04A77F90262CDCBD0023975C /* Lato-LightItalic.ttf */,
+				04A77F8F262CDCBD0023975C /* Lato-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		04B904C82625D3C3001551A5 /* Helpers */ = {
@@ -307,7 +342,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				048E5B79260BB13C009978B4 /* LaunchScreen.storyboard in Resources */,
+				04A77F99262CFD220023975C /* Quicksand-SemiBold.ttf in Resources */,
+				04A77F94262CDCBD0023975C /* Lato-LightItalic.ttf in Resources */,
+				04A77F98262CFD220023975C /* Quicksand-Regular.ttf in Resources */,
+				04A77F91262CDCBD0023975C /* Lato-Italic.ttf in Resources */,
+				04A77F93262CDCBD0023975C /* Lato-Regular.ttf in Resources */,
 				048E5B76260BB13C009978B4 /* Assets.xcassets in Resources */,
+				04A77F92262CDCBD0023975C /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +423,7 @@
 				048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */,
 				FE8B110326262E0900236EB3 /* UserPageViewController.swift in Sources */,
 				0477EA9D26124D40009DC747 /* AuthManager.swift in Sources */,
+				04A77F8A262B6E640023975C /* SetupViewController.swift in Sources */,
 				FE8B11192626614200236EB3 /* ChoreCellViewModel.swift in Sources */,
 				047F000C2612B6FC009EF15D /* SettingsViewController.swift in Sources */,
 				FEB882C22625F980004F0D1E /* HouseholdViewController.swift in Sources */,
@@ -393,6 +435,7 @@
 				0477EAB026124DCC009DC747 /* User.swift in Sources */,
 				FE8B111C26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift in Sources */,
 				04E918BB26252AFF009469F0 /* SignUpViewController.swift in Sources */,
+				04B798A32627C48C0095AE2E /* SignInViewController.swift in Sources */,
 				04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */,
 				FEB882C52625FB0A004F0D1E /* PrivacyViewController.swift in Sources */,
 				04B904CA2625D3E8001551A5 /* Extensions.swift in Sources */,
@@ -405,6 +448,7 @@
 				FE8B111F262690F900236EB3 /* TitleHeaderCollectionReusableView.swift in Sources */,
 				FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */,
 				FEF61DAC263723E50095F769 /* FooterButtonCollectionViewCell.swift in Sources */,
+				04B798A62627C6330095AE2E /* EmailSignInViewController.swift in Sources */,
 				048E5B6F260BB139009978B4 /* SceneDelegate.swift in Sources */,
 				FEF61D9F2636EE3B0095F769 /* ProfileChoreCollectionViewCell.swift in Sources */,
 				04B904CE262635C1001551A5 /* EmailSignUpViewController.swift in Sources */,

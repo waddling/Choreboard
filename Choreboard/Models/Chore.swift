@@ -26,6 +26,7 @@ class Chore: Object {
     @objc dynamic var repeating: Bool = false
     @objc dynamic var points: Int = 0
     @objc dynamic var status: String = ""
+    
     override static func primaryKey() -> String? {
         return "_id"
     }
@@ -41,7 +42,6 @@ class Chore: Object {
     
     convenience init(partition: String, title: String, createdBy: User, assignedTo: User, dueDate: Date, repeating: Bool, points: Int, status: String) {
         self.init()
-        self._partition = partition
         self.title = title
         self.createdBy = createdBy
         self.assignedTo = assignedTo

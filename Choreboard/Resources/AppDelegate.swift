@@ -22,16 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = "277996269647-v9gannb1s85mttoct27pjpt9sanv8qgq.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
         
-        if AuthManager.shared.isSignedIn {
-            window.rootViewController = TabBarViewController()
-        } else {
-            // window.rootViewController = UINavigationController(rootViewController: SignUpViewController())
-            window.rootViewController = TabBarViewController()
-        }
-        
-        window.makeKeyAndVisible()
-        self.window = window
-        
         return true
     }
 
