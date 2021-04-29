@@ -8,6 +8,33 @@
 import UIKit
 import RealmSwift
 
+// Observable
+class Observable<T> {
+    var value: T? {
+        didSet {
+            listeners.forEach {
+                $0(value)
+            }
+        }
+    }
+    
+    init(_ value: T?) {
+        self.value = value
+    }
+    
+    private var listeners: [((T?) -> Void)] = []
+    
+    func bind(_ listener: @escaping (T?) -> Void) {
+        listener(value)
+        self.listeners.append(listener)
+    }
+}
+
+struct ChoreListViewModel {
+    var chores: Observable<[Chore]> = Observable([])
+    var users: Observable<[User]> = Observable([])
+}
+
 enum HomeSectionType {
     case chores(viewModels: [ChoreCellViewModel])                       // 0
     case householdMembers(viewModels: [HouseholdMemberCellViewModel])   // 1
@@ -21,6 +48,8 @@ enum HomeSectionType {
         }
     }
 }
+
+var choresList = ChoreListViewModel()
 
 class HomeViewController: UIViewController {
     
@@ -39,39 +68,65 @@ class HomeViewController: UIViewController {
     
     private var sections = [HomeSectionType]()
     
-    override func viewDidLoad() {
-        
-        // Populate dummy data
-        var choresList = [Chore]()
-        choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 1, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Do dishes again", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Sweep floor", createdBy: User(name: "John Holland"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        
-        var usersList = [User]()
-        usersList.append(User(name: "Joe Delle Donne"))
-        usersList.append(User(name: "Yeon Kim"))
-        usersList.append(User(name: "TJ Silva"))
-        usersList.append(User(name: "John Holland"))
-        usersList.append(User(name: "Liam Karr"))
-        
-        // put dummy data into sections
-        sections.append(.chores(viewModels: choresList.compactMap({
+    func reloadSections() {
+        sections = [HomeSectionType]()
+        sections.append(.chores(viewModels: choresList.chores.value!.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                createdBy: $0.createdBy ?? User(name: "Joe Delle Donne"),
+                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
                 creationDate: $0.creationDate,
                 status: $0.status)
         })))
-        sections.append(.householdMembers(viewModels: usersList.compactMap({
+        sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
+            return HouseholdMemberCellViewModel(
+                name: $0.name
+            )
+        })))
+        collectionView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        
+        // Listen to choresList ViewModel, reload whenever something changes
+        choresList.chores.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadSections()
+            }
+        }
+        choresList.users.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadSections()
+            }
+        }
+        
+        // Populate dummy chore data
+        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 1, status: "complete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim"), assignedTo: User(name: "John Holland"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Yeon Kim"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes again", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "complete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Sweep floor", createdBy: User(name: "John Holland"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr"), assignedTo: User(name: "Liam Karr"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        
+        // Populate dummy household members data
+        choresList.users.value!.append(User(name: "Joe Delle Donne"))
+        choresList.users.value!.append(User(name: "Yeon Kim"))
+        choresList.users.value!.append(User(name: "TJ Silva"))
+        choresList.users.value!.append(User(name: "John Holland"))
+        choresList.users.value!.append(User(name: "Liam Karr"))
+        
+        // put dummy data into sections
+        sections.append(.chores(viewModels: choresList.chores.value!.compactMap({
+            return ChoreCellViewModel(
+                title: $0.title,
+                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
+                creationDate: $0.creationDate,
+                status: $0.status)
+        })))
+        sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return HouseholdMemberCellViewModel(
                 name: $0.name ?? "John Doe"
             )
         })))
-        
-        
         
         super.viewDidLoad()
         
@@ -81,10 +136,10 @@ class HomeViewController: UIViewController {
         
         // Order here matters! add subviews after collection views
         configureCollectionView()
-        
-        
         view.addSubview(spinner)
-        // fetch data goes here
+        // fetch data goes here?
+        
+        
         
     }
     
@@ -93,10 +148,12 @@ class HomeViewController: UIViewController {
         collectionView.frame = view.bounds
     }
     
-    
+    func loadData() {
+        // TODO: code to load data from database 
+        collectionView.reloadData()
+    }
     
     private func configureCollectionView() {
-        print("here")
         view.addSubview(collectionView)
         collectionView.register(UICollectionViewCell.self,
                                 forCellWithReuseIdentifier: "cell")
@@ -107,13 +164,12 @@ class HomeViewController: UIViewController {
         collectionView.register(HouseholdMemberCollectionViewCell.self,
                                 forCellWithReuseIdentifier: HouseholdMemberCollectionViewCell.identifier)
         
-        // register headers
+        // register headers and footers
         collectionView.register(
             TitleHeaderCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: TitleHeaderCollectionReusableView.identifier
         )
-        
         collectionView.register(
             UICollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
@@ -140,7 +196,7 @@ class HomeViewController: UIViewController {
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(50)
+                    heightDimension: .absolute(85)
                 ),
                 elementKind: UICollectionView.elementKindSectionFooter,
                 alignment: .bottom
@@ -273,26 +329,28 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionView.elementKindSectionFooter {
-            print("footer")
             let footer = collectionView.dequeueReusableSupplementaryView(
                 ofKind: UICollectionView.elementKindSectionFooter,
                 withReuseIdentifier: TitleFooterCollectionReusableView.identifier,
                 for: indexPath
             )
-            // Only do this footer for the first section
+            // Add Chore button, Only do this footer for the first section
             if (indexPath.section == 0) {
-                print("made button")
-                let addButton = UIButton()
+                let plusImage = UIImage(systemName: "plus.app")
+                let addButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
                 addButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-                addButton.backgroundColor = .systemRed
-                addButton.frame = CGRect(x: 2, y: 15, width: 100, height: 30)
-                addButton.setTitle("Add Chore", for: .normal)
+                addButton.backgroundColor = color.UIColorFromRGB(rgbValue: 0xd4d294)
+                addButton.setImage(plusImage, for: .normal)
+                addButton.frame = CGRect(x: 2, y: 15, width: 200, height: 65)
+                addButton.setTitle("  Add Chore", for: .normal)
+                addButton.setTitleColor(.black, for: .normal)
+                addButton.tintColor = .black
+                addButton.layer.cornerRadius = 8.0
                 footer.addSubview(addButton)
                 return footer
             }
             return footer
         }
-        print("header")
         
         guard let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
@@ -309,10 +367,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     @objc func buttonAction() {
         print("Button pressed")
-        let vc = HouseholdViewController()
-        vc.title = "Household"
+        let vc = AddChoreViewController(home: self)
+        vc.title = "Add Chore"
         vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+        //navigationController?.pushViewController(vc, animated: true)
+        present(UINavigationController(rootViewController: vc), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -327,7 +386,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 return UICollectionViewCell()
             }
             let viewModel = viewModels[indexPath.row]
-            cell.backgroundColor = .systemTeal
+            cell.backgroundColor = color.UIColorFromRGB(rgbValue: 0x6EADE9)
             cell.configure(with: viewModel)
             return cell
         case .householdMembers(let viewModels):
@@ -337,14 +396,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 return UICollectionViewCell()
             }
             let viewModel = viewModels[indexPath.row]
-            cell.backgroundColor = .systemGreen
+            cell.backgroundColor = color.UIColorFromRGB(rgbValue: 0xB3D6C6)
             cell.configure(with: viewModel)
             return cell
         }
         
     }
-    
-    
-    
     
 }

@@ -50,6 +50,7 @@
 		FEF61DA62636EF290095F769 /* ProfileChoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DA52636EF290095F769 /* ProfileChoreCellViewModel.swift */; };
 		FEF61DA92636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DA82636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift */; };
 		FEF61DAC263723E50095F769 /* FooterButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DAB263723E50095F769 /* FooterButtonCollectionViewCell.swift */; };
+		FEF61DAF26374EA30095F769 /* AddChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF61DAE26374EA30095F769 /* AddChoreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,7 @@
 		FEF61DA52636EF290095F769 /* ProfileChoreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileChoreCellViewModel.swift; path = Choreboard/Views/Profile/ProfileChoreCellViewModel.swift; sourceTree = SOURCE_ROOT; };
 		FEF61DA82636EF8A0095F769 /* ProfileHouseholdMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileHouseholdMemberCellViewModel.swift; path = Choreboard/Views/Profile/ProfileHouseholdMemberCellViewModel.swift; sourceTree = SOURCE_ROOT; };
 		FEF61DAB263723E50095F769 /* FooterButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		FEF61DAE26374EA30095F769 /* AddChoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				04B798A22627C48C0095AE2E /* SignInViewController.swift */,
 				04B798A52627C6330095AE2E /* EmailSignInViewController.swift */,
 				04A77F89262B6E640023975C /* SetupViewController.swift */,
+				FEF61DAE26374EA30095F769 /* AddChoreViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				FE8B111C26268B5C00236EB3 /* HouseholdMemberCellViewModel.swift in Sources */,
 				04E918BB26252AFF009469F0 /* SignUpViewController.swift in Sources */,
 				04B798A32627C48C0095AE2E /* SignInViewController.swift in Sources */,
+				FEF61DAF26374EA30095F769 /* AddChoreViewController.swift in Sources */,
 				04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */,
 				FEB882C52625FB0A004F0D1E /* PrivacyViewController.swift in Sources */,
 				04B904CA2625D3E8001551A5 /* Extensions.swift in Sources */,

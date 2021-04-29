@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 enum ProfileSectionType {
-    case chores(viewModels: [ProfileChoreCellViewModel])                       // 0
+    case chores(viewModels: [ChoreCellViewModel])                       // 0
     case householdMembers(viewModels: [ProfileHouseholdMemberCellViewModel])   // 1
     
     var title: String {
@@ -36,6 +36,8 @@ class color:NSObject
 
 class ProfileViewController: UIViewController {
     
+    var globalIndexes: [Int] = []
+    
     private var collectionView: UICollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
             return ProfileViewController.createSectionLayout(section: sectionIndex)
@@ -50,35 +52,69 @@ class ProfileViewController: UIViewController {
     }()
     
     private var sections = [ProfileSectionType]()
-    var choresList = [Chore]()
     
-    override func viewDidLoad() {
-        
-        // Populate dummy data
-        //var choresList = [Chore]()
-        choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 1, status: "complete"))
-        choresList.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Do dishes again", createdBy: User(name: "TJ Silva"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "complete"))
-        choresList.append(Chore(partition: "part", title: "Sweep floor", createdBy: User(name: "John Holland"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr"), assignedTo: User(name: "Joe Delle Donne"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        
-        var usersList = [User]()
-        usersList.append(User(name: "Joe Delle Donne"))
-        usersList.append(User(name: "Yeon Kim"))
-        usersList.append(User(name: "TJ Silva"))
-        usersList.append(User(name: "John Holland"))
-        usersList.append(User(name: "Liam Karr"))
-        
-        // put dummy data into sections
-        sections.append(.chores(viewModels: choresList.compactMap({
-            return ProfileChoreCellViewModel(
+    func reloadSections() {
+        var myChores: [Chore] = { () -> [Chore] in
+            self.globalIndexes = []
+            var chores = [] as [Chore]
+            for (index, chore) in choresList.chores.value!.enumerated() {
+                if chore.assignedTo?.name == "Joe Delle Donne" {
+                    chores.append(chore)
+                    self.globalIndexes.append(index)
+                }
+            }
+            return chores
+        }()
+        sections = [ProfileSectionType]()
+        sections.append(.chores(viewModels: myChores.compactMap({
+            return ChoreCellViewModel(
                 title: $0.title,
-                createdBy: $0.createdBy ?? User(name: "Joe Delle Donne"),
+                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
                 creationDate: $0.creationDate,
                 status: $0.status)
         })))
-        sections.append(.householdMembers(viewModels: usersList.compactMap({
+        sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
+            return ProfileHouseholdMemberCellViewModel(
+                name: $0.name
+            )
+        })))
+        collectionView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        
+        // Listen to choresList ViewModel, reload whenever something changes
+        choresList.chores.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadSections()
+            }
+        }
+        choresList.users.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.reloadSections()
+            }
+        }
+        
+        // Put dummy data into sections
+        var myChores: [Chore] = { () -> [Chore] in
+            self.globalIndexes = []
+            var chores = [] as [Chore]
+            for (index, chore) in choresList.chores.value!.enumerated() {
+                if chore.assignedTo?.name == "Joe Delle Donne" {
+                    chores.append(chore)
+                    self.globalIndexes.append(index)
+                }
+            }
+            return chores
+        }()
+        sections.append(.chores(viewModels: myChores.compactMap({
+            return ChoreCellViewModel(
+                title: $0.title,
+                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
+                creationDate: $0.creationDate,
+                status: $0.status)
+        })))
+        sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return ProfileHouseholdMemberCellViewModel(
                 name: $0.name!
             )
@@ -93,7 +129,7 @@ class ProfileViewController: UIViewController {
         // Order here matters! add subviews after collection views
         configureCollectionView()
         view.addSubview(spinner)
-        // fetch data goes here
+        // fetch data goes here?
         
     }
     
@@ -101,8 +137,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
-    
-    
     
     private func configureCollectionView() {
         view.addSubview(collectionView)
@@ -283,7 +317,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
             let viewModel = viewModels[indexPath.row]
             //cell.backgroundColor = color.UIColorFromRGB(rgbValue: 0x6EADE9)
-            cell.configure(with: viewModel)
+            cell.configure(with: viewModel, index: self.globalIndexes[indexPath.row])
             return cell
         case .householdMembers(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
@@ -304,11 +338,23 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         switch type {
         case .chores(_):
             if let cell = collectionView.cellForItem(at: indexPath) as? ProfileChoreCollectionViewCell {
-                //cell.contentView.backgroundColor = color.UIColorFromRGB(rgbValue: 0xB2B27A)
-                //choresList[indexPath.item].status = "yeet"
+                // Change cell appearance
                 cell.isTapped()
-                //collectionView.reloadData()
-                // TODO: Send updated data to database
+                print("global: ", cell.globalIndex)
+                // Alter tapped chore data
+                if (!cell.checked) {
+                    // Now incomplete, tapped while checked, make incomplete
+                    choresList.chores.value![cell.globalIndex].status = "incomplete"
+                    choresList.users.value!.append(User(name: "<temp>"))
+                    _ = choresList.users.value!.popLast()
+                } else {
+                    // Now complete, tapped while unchecked, make complete
+                    choresList.chores.value![cell.globalIndex].status = "complete"
+                    choresList.users.value!.append(User(name: "<temp>"))
+                    _ = choresList.users.value!.popLast()
+                }
+                reloadSections()
+                // YEON TODO: Send updated data to database
             }
         case .householdMembers(_):
             ()
