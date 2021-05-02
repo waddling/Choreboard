@@ -9,4 +9,7 @@ import Foundation
 
 struct ProfileHouseholdMemberCellViewModel {
     let name: String
+    let points: Int
+    let pictureURL: String
+    let user: User
 }

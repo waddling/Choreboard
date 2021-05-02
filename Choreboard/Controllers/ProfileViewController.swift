@@ -69,13 +69,18 @@ class ProfileViewController: UIViewController {
         sections.append(.chores(viewModels: myChores.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
+                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
                 creationDate: $0.creationDate,
-                status: $0.status)
+                status: $0.status,
+                points: $0.points
+            )
         })))
         sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return ProfileHouseholdMemberCellViewModel(
-                name: $0.name
+                name: $0.name!,
+                points: $0.points,
+                pictureURL: $0.pictureURL,
+                user: $0
             )
         })))
         collectionView.reloadData()
@@ -110,13 +115,18 @@ class ProfileViewController: UIViewController {
         sections.append(.chores(viewModels: myChores.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne"),
+                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
                 creationDate: $0.creationDate,
-                status: $0.status)
+                status: $0.status,
+                points: $0.points
+            )
         })))
         sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return ProfileHouseholdMemberCellViewModel(
-                name: $0.name!
+                name: $0.name!,
+                points: $0.points,
+                pictureURL: $0.pictureURL,
+                user: $0
             )
         })))
         
@@ -340,24 +350,45 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             if let cell = collectionView.cellForItem(at: indexPath) as? ProfileChoreCollectionViewCell {
                 // Change cell appearance
                 cell.isTapped()
-                print("global: ", cell.globalIndex)
+                //print("global: ", cell.globalIndex)
+                
+                // Alter points of user
+                var index = 0
+                for (i, user) in choresList.users.value!.enumerated() {
+                    if (user.name == cell.user.name) {
+                        index = i
+                    }
+                }
+                
+                if (!cell.checked) {
+                    choresList.users.value![index].points -= choresList.chores.value![cell.globalIndex].points
+                } else {
+                    choresList.users.value![index].points += choresList.chores.value![cell.globalIndex].points
+                }
+                
+                
+                print(cell.user)
                 // Alter tapped chore data
                 if (!cell.checked) {
                     // Now incomplete, tapped while checked, make incomplete
                     choresList.chores.value![cell.globalIndex].status = "incomplete"
-                    choresList.users.value!.append(User(name: "<temp>"))
+                    choresList.users.value!.append(User(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
                     _ = choresList.users.value!.popLast()
                 } else {
                     // Now complete, tapped while unchecked, make complete
                     choresList.chores.value![cell.globalIndex].status = "complete"
-                    choresList.users.value!.append(User(name: "<temp>"))
+                    choresList.users.value!.append(User(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
                     _ = choresList.users.value!.popLast()
                 }
                 reloadSections()
                 // YEON TODO: Send updated data to database
             }
         case .householdMembers(_):
-            ()
+            if let cell = collectionView.cellForItem(at: indexPath) as? ProfileHouseholdMemberCollectionViewCell {
+                print(cell.user)
+                //reloadSections()
+                // YEON TODO: Send updated data to database
+            }
         }
     }
 

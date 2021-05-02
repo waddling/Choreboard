@@ -23,7 +23,7 @@ class UserPageViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let temp = User(name: "Joe Delle Donne")
+        let temp = User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
         self.updateUI(with: temp)
         tableView.delegate = self
         tableView.dataSource = self
@@ -43,11 +43,11 @@ class UserPageViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.isHidden = false
         
         // configure table models (strings to be displayed in rows, in order)
-        models.append("Name: \(model.name)")
+        models.append("Name: \(model.name ?? "<nil>")")
         models.append("User ID: ")
         models.append("Household Name: ")
         models.append("Household ID: ")
-        createTableHeader(with: "https://media-exp1.licdn.com/dms/image/C4E03AQG1K38VePz-kQ/profile-displayphoto-shrink_200_200/0/1565002151065?e=1623888000&v=beta&t=GmmqAF4sHLeT020QAoNqwRcREIRS_x22xzNOIjiwGQo")
+        createTableHeader(with: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
         
         tableView.reloadData()
     }

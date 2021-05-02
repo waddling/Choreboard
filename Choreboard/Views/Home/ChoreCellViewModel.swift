@@ -12,4 +12,5 @@ struct ChoreCellViewModel {
     let assignedTo: User
     let creationDate: Date
     let status: String
+    let points: Int
 }

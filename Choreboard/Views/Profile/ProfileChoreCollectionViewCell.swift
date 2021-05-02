@@ -13,6 +13,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProfileChoreCollectionViewCell"
     var checked = false
     var globalIndex = 0
+    var user: User = User(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
     
     // for a picture example, see 25:45 of part 9 of the tutorial
     private let titleLabel: UILabel = {
@@ -25,6 +26,13 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
     private let assignedToLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0 // lets text wrap if it needs to
+        label.font = .systemFont(ofSize: 12, weight: .light)
+        return label
+    }()
+    
+    private let pointsLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1 // lets text wrap if it needs to
         label.font = .systemFont(ofSize: 12, weight: .light)
         return label
     }()
@@ -56,6 +64,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(titleLabel)
         contentView.addSubview(assignedToLabel)
+        contentView.addSubview(pointsLabel)
         contentView.addSubview(creationDateLabel)
         contentView.addSubview(statusLabel)
         contentView.addSubview(checkboxImageView)
@@ -69,6 +78,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         titleLabel.sizeToFit()
         assignedToLabel.sizeToFit()
+        pointsLabel.sizeToFit()
         creationDateLabel.sizeToFit()
         statusLabel.sizeToFit()
         checkboxImageView.sizeToFit()
@@ -80,23 +90,30 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
             height: titleLabel.frame.height
         )
         
+        pointsLabel.frame = CGRect(
+            x: assignedToLabel.frame.minX,
+            y: assignedToLabel.frame.minY + 20,
+            width: 300,
+            height: titleLabel.frame.height
+        )
+        
         creationDateLabel.frame = CGRect(
-            x: titleLabel.frame.minX + 5,
-            y: titleLabel.frame.minY + 40,
+            x: pointsLabel.frame.minX,
+            y: pointsLabel.frame.minY + 20,
             width: 300,
             height: titleLabel.frame.height
         )
         
         statusLabel.frame = CGRect(
-            x: titleLabel.frame.minX + 5,
-            y: titleLabel.frame.minY + 60,
-            width: 300,
+            x: creationDateLabel.frame.minX,
+            y: creationDateLabel.frame.minY + 20,
+            width: 130,
             height: titleLabel.frame.height
         )
         
         checkboxImageView.frame = CGRect(
-            x: titleLabel.frame.minX + 5,
-            y: titleLabel.frame.minY + 80,
+            x: statusLabel.frame.maxX + 5,
+            y: statusLabel.frame.minY,
             width: 30,
             height: 30
         )
@@ -107,6 +124,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         titleLabel.text = nil
         assignedToLabel.text = nil
+        pointsLabel.text = nil
         creationDateLabel.text = nil
         statusLabel.text = nil
     }
@@ -123,8 +141,11 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
             backgroundColor = color.UIColorFromRGB(rgbValue: 0xB3D6C6)
         }
         
+        user = viewModel.assignedTo
+        
         titleLabel.text = viewModel.title
-        assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name)"
+        assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name ?? "<nil>")"
+        pointsLabel.text = "Points: \(String(viewModel.points))"
         creationDateLabel.text = "Date added: \(viewModel.creationDate.description.split(separator: " ")[0] + " " + viewModel.creationDate.description.split(separator: " ")[1])"
         statusLabel.text = "Status: \(viewModel.status)"
         self.globalIndex = index

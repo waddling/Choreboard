@@ -13,6 +13,8 @@ class User: Object {
     @objc dynamic var _partition: String = ""
     @objc dynamic var email: String = ""
     @objc dynamic var name: String? = nil
+    @objc dynamic var points: Int = 0
+    @objc dynamic var pictureURL: String = ""
     let households = LinkingObjects(fromType: Household.self, property: "members")
     @objc dynamic var firstTimeSetup: Bool = true
     
@@ -20,9 +22,11 @@ class User: Object {
         return "_id"
     }
     
-    convenience init(name: String) {
+    convenience init(name: String, points: Int, pictureURL: String) {
         self.init()
         self.name = name
+        self.points = points
+        self.pictureURL = pictureURL
     }
 }
 
