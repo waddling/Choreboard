@@ -81,7 +81,10 @@ class HomeViewController: UIViewController {
         })))
         sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return HouseholdMemberCellViewModel(
-                name: $0.name!
+                name: $0.name!,
+                points: $0.points,
+                pictureURL: $0.pictureURL,
+                user: $0
             )
         })))
         collectionView.reloadData()
@@ -104,17 +107,17 @@ class HomeViewController: UIViewController {
         // Populate dummy chore data
         choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 1, status: "complete"))
         choresList.chores.value!.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "John Holland", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))
-        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Yeon Kim", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes again", createdBy: User(name: "TJ Silva", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 3, status: "complete"))
-        choresList.chores.value!.append(Chore(partition: "part", title: "Sweep floor", createdBy: User(name: "John Holland", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
-        choresList.chores.value!.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Liam Karr", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 3, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "TJ Silva", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Yeon Kim", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 5, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes again", createdBy: User(name: "TJ Silva", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 15, status: "complete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Sweep floor", createdBy: User(name: "John Holland", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 8, status: "incomplete"))
+        choresList.chores.value!.append(Chore(partition: "part", title: "Make dinner", createdBy: User(name: "Liam Karr", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Liam Karr", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 4, status: "incomplete"))
         
         // Populate dummy household members data
         choresList.users.value!.append(User(name: "Joe Delle Donne", points: 5, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
-        choresList.users.value!.append(User(name: "Yeon Kim", points: 13, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
-        choresList.users.value!.append(User(name: "TJ Silva", points: 40, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
-        choresList.users.value!.append(User(name: "John Holland", points: 6, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
-        choresList.users.value!.append(User(name: "Liam Karr", points: 24, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
+        choresList.users.value!.append(User(name: "Yeon Kim", points: 13, pictureURL: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/smartest-dog-breeds-1553287693.jpg?crop=0.673xw:1.00xh;0.167xw,0&resize=640:*"))
+        choresList.users.value!.append(User(name: "TJ Silva", points: 40, pictureURL: "https://media.nature.com/lw800/magazine-assets/d41586-020-03053-2/d41586-020-03053-2_18533904.jpg"))
+        choresList.users.value!.append(User(name: "John Holland", points: 6, pictureURL: "https://moderndogmagazine.com/sites/default/files/styles/slidehsow-banner/public/images/articles/top_images/Header_206.jpg?itok=4ttMMleH"))
+        choresList.users.value!.append(User(name: "Liam Karr", points: 24, pictureURL: "https://i.natgeofe.com/n/dd400a8b-4632-4076-af34-ec2c0a302a34/01-waq-dogs-and-storms-NationalGeographic_1468936.jpg"))
         
         // put dummy data into sections
         sections.append(.chores(viewModels: choresList.chores.value!.compactMap({
@@ -128,7 +131,10 @@ class HomeViewController: UIViewController {
         })))
         sections.append(.householdMembers(viewModels: choresList.users.value!.compactMap({
             return HouseholdMemberCellViewModel(
-                name: $0.name ?? "John Doe"
+                name: $0.name ?? "John Doe",
+                points: $0.points,
+                pictureURL: $0.pictureURL,
+                user: $0
             )
         })))
         
