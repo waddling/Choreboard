@@ -44,7 +44,7 @@ enum HomeSectionType {
         case .chores:
             return "Household Chores"
         case .householdMembers:
-            return "Household members"
+            return "Household members (tap for summary)"
         }
     }
 }
@@ -398,6 +398,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let viewModel = viewModels[indexPath.row]
             cell.backgroundColor = color.UIColorFromRGB(rgbValue: 0x6EADE9)
             cell.configure(with: viewModel)
+            cell.layer.cornerRadius = 8.0
             return cell
         case .householdMembers(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
@@ -408,6 +409,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let viewModel = viewModels[indexPath.row]
             cell.backgroundColor = color.UIColorFromRGB(rgbValue: 0xB3D6C6)
             cell.configure(with: viewModel)
+            cell.layer.cornerRadius = 8.0
             return cell
         }
         
@@ -427,8 +429,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 let vc = MemberSummaryViewController(user: cell.user)
                 vc.title = "Member Summary"
                 vc.navigationItem.largeTitleDisplayMode = .never
-                //navigationController?.pushViewController(vc, animated: true)
-                present(UINavigationController(rootViewController: vc), animated: true)
+                navigationController?.pushViewController(vc, animated: true)
+                //present(UINavigationController(rootViewController: vc), animated: true)
                 //reloadSections()
                 // YEON TODO: Send updated data to database
             }

@@ -15,7 +15,7 @@ enum ProfileSectionType {
     var title: String {
         switch self {
         case .chores:
-            return "My Chores"
+            return "My Chores (Tap to toggle complete)"
         case .householdMembers:
             return "My Household"
         }
@@ -328,6 +328,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             let viewModel = viewModels[indexPath.row]
             //cell.backgroundColor = color.UIColorFromRGB(rgbValue: 0x6EADE9)
             cell.configure(with: viewModel, index: self.globalIndexes[indexPath.row])
+            cell.layer.cornerRadius = 8.0
             return cell
         case .householdMembers(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
@@ -338,6 +339,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             let viewModel = viewModels[indexPath.row]
             cell.backgroundColor = color.UIColorFromRGB(rgbValue: 0x6EADE9)
             cell.configure(with: viewModel)
+            cell.layer.cornerRadius = 8.0
             return cell
         }
         
@@ -386,7 +388,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         case .householdMembers(_):
             if let cell = collectionView.cellForItem(at: indexPath) as? ProfileHouseholdMemberCollectionViewCell {
                 print(cell.user)
-                
                 //reloadSections()
                 // YEON TODO: Send updated data to database
             }
