@@ -72,8 +72,15 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         creationDateLabel.sizeToFit()
         statusLabel.sizeToFit()
         
+        titleLabel.frame = CGRect(
+            x: contentView.frame.minX + 7,
+            y: contentView.frame.minY + 3,
+            width: 300,
+            height: titleLabel.frame.height
+        )
+        
         assignedToLabel.frame = CGRect(
-            x: titleLabel.frame.minX + 5,
+            x: titleLabel.frame.minX,
             y: titleLabel.frame.minY + 20,
             width: 300,
             height: titleLabel.frame.height

@@ -105,21 +105,21 @@ class MemberSummaryViewController: UIViewController, UICollectionViewDataSource,
             x: 20,
             y: imageView.frame.maxY + 5,
             width: view.frame.size.width-40,
-            height: 52
+            height: 30
         )
         print(titleLabel.frame)
         pointsLabel.frame = CGRect(
             x: 20,
             y: titleLabel.frame.maxY + 5,
             width: view.frame.size.width-40,
-            height: 52
+            height: 30
         )
         print(pointsLabel.frame)
         choresLabel.frame = CGRect(
             x: 20,
             y: pointsLabel.frame.maxY + 5,
             width: view.frame.size.width-40,
-            height: 52
+            height: 30
         )
         print(choresLabel.frame)
         collectionView.frame = CGRect(
@@ -164,16 +164,25 @@ class MemberSummaryViewController: UIViewController, UICollectionViewDataSource,
             let verticalGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(120)
+                    heightDimension: .absolute(360)
                 ),
                 subitem: item,
+                count: 3
+            )
+            
+            let horizontalGroup = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.8),
+                    heightDimension: .absolute(360)
+                ),
+                subitem: verticalGroup,
                 count: 1
             )
             
             // section
-            let section = NSCollectionLayoutSection(group: verticalGroup)
+            let section = NSCollectionLayoutSection(group: horizontalGroup)
             section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 30)
-            //section.orthogonalScrollingBehavior = .groupPaging  // .continuous (if single group)
+            section.orthogonalScrollingBehavior = .groupPaging  // .continuous (if single group)
             return section
             
         default:
