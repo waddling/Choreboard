@@ -386,6 +386,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         case .householdMembers(_):
             if let cell = collectionView.cellForItem(at: indexPath) as? ProfileHouseholdMemberCollectionViewCell {
                 print(cell.user)
+                
                 //reloadSections()
                 // YEON TODO: Send updated data to database
             }

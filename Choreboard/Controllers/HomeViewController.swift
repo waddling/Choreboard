@@ -413,4 +413,26 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let type = sections[indexPath.section]
+        switch type {
+        case .chores(_):
+            if let cell = collectionView.cellForItem(at: indexPath) as? ChoreCollectionViewCell {
+                ()
+            }
+        case .householdMembers(_):
+            if let cell = collectionView.cellForItem(at: indexPath) as? HouseholdMemberCollectionViewCell {
+                print("Home: member tapped...")
+                print(cell.user)
+                let vc = MemberSummaryViewController(user: cell.user)
+                vc.title = "Member Summary"
+                vc.navigationItem.largeTitleDisplayMode = .never
+                //navigationController?.pushViewController(vc, animated: true)
+                present(UINavigationController(rootViewController: vc), animated: true)
+                //reloadSections()
+                // YEON TODO: Send updated data to database
+            }
+        }
+    }
+    
 }
