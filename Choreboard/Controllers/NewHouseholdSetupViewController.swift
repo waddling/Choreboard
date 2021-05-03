@@ -218,9 +218,12 @@ class NewHouseholdSetupViewController: UIViewController {
                                     
                                     fatalError("Failed to open realm: \(error)")
                                 case .success(let realm):
+                                    userData.firstTimeSetup = false
+                                    
                                     try! realm.write {
                                         realm.add(household.self, update: .modified)
                                     }
+                                    self!.navigationController!.pushViewController(TabBarViewController(), animated: true)
                                 }
                             }
                         }

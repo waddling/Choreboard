@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController {
         sections.append(.chores(viewModels: myChores.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
+                assignedTo: $0.assignedTo ?? Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
                 creationDate: $0.creationDate,
                 status: $0.status,
                 points: $0.points
@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController {
             return ProfileHouseholdMemberCellViewModel(
                 name: $0.name!,
                 points: $0.points,
-                pictureURL: $0.pictureURL,
+                pictureURL: $0.pictureURL!,
                 user: $0
             )
         })))
@@ -115,7 +115,7 @@ class ProfileViewController: UIViewController {
         sections.append(.chores(viewModels: myChores.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                assignedTo: $0.assignedTo ?? User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
+                assignedTo: $0.assignedTo ?? Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
                 creationDate: $0.creationDate,
                 status: $0.status,
                 points: $0.points
@@ -125,7 +125,7 @@ class ProfileViewController: UIViewController {
             return ProfileHouseholdMemberCellViewModel(
                 name: $0.name!,
                 points: $0.points,
-                pictureURL: $0.pictureURL,
+                pictureURL: $0.pictureURL!,
                 user: $0
             )
         })))
@@ -374,12 +374,12 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if (!cell.checked) {
                     // Now incomplete, tapped while checked, make incomplete
                     choresList.chores.value![cell.globalIndex].status = "incomplete"
-                    choresList.users.value!.append(User(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
+                    choresList.users.value!.append(Member(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
                     _ = choresList.users.value!.popLast()
                 } else {
                     // Now complete, tapped while unchecked, make complete
                     choresList.chores.value![cell.globalIndex].status = "complete"
-                    choresList.users.value!.append(User(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
+                    choresList.users.value!.append(Member(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
                     _ = choresList.users.value!.popLast()
                 }
                 reloadSections()

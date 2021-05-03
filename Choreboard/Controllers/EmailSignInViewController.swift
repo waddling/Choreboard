@@ -151,7 +151,8 @@ class EmailSignInViewController: UIViewController {
                                 } else {
                                     print("Not First Time Setup")
                                     // Go to the list of projects in the user object contained in the user realm.
-                                    // self!.navigationController!.pushViewController(TabBarViewController(), animated: true)
+                                    
+                                    self!.navigationController!.pushViewController(TabBarViewController(), animated: true)
                                 }
                                 
                             }

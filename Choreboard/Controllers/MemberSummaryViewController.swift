@@ -48,10 +48,10 @@ class MemberSummaryViewController: UIViewController, UICollectionViewDataSource,
     private var sections = [MemberSummarySectionType]()
     
     // Get user for the summary
-    let user: User
-    init(user: User) {
+    let user: Member
+    init(user: Member) {
         self.user = user
-        let url = URL(string: user.pictureURL)
+        let url = URL(string: user.pictureURL!)
         imageView.sd_setImage(with: url, completed: nil)
         self.titleLabel.text = user.name
         self.pointsLabel.text = "Points: \(String(user.points))"
@@ -69,7 +69,7 @@ class MemberSummaryViewController: UIViewController, UICollectionViewDataSource,
             if (chore.assignedTo?.name == user.name) {
                 chores.append(ChoreCellViewModel(
                     title: chore.title,
-                    assignedTo: chore.assignedTo ?? User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
+                    assignedTo: chore.assignedTo ?? Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
                     creationDate: chore.creationDate,
                     status: chore.status,
                     points: chore.points

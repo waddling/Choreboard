@@ -9,7 +9,7 @@ import Foundation
 
 struct ChoreCellViewModel {
     let title: String
-    let assignedTo: User
+    let assignedTo: Member
     let creationDate: Date
     let status: String
     let points: Int

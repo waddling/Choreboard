@@ -68,8 +68,8 @@ class AddChoreViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return label
     }()
     
-    var usersDict: [String:User] = { () -> [String:User] in
-        var userDict = [:] as [String:User]
+    var usersDict: [String:Member] = { () -> [String:Member] in
+        var userDict = [:] as [String:Member]
         for user in choresList.users.value! {
             userDict[user.name!] = user
         }
@@ -167,13 +167,13 @@ class AddChoreViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         print("\n-- NEW CHORE --")
         print("Title: ", title)
         print("Points: ", points)
-        print("Assigned to: ", usersDict[selectedUser] ?? User(name: "ERROR", points: 0, pictureURL: "https://media-exp1.licdn.com/dms/image/C4E03AQG1K38VePz-kQ/profile-displayphoto-shrink_200_200/0/1565002151065?e=1623888000&v=beta&t=GmmqAF4sHLeT020QAoNqwRcREIRS_x22xzNOIjiGQo"))
+        print("Assigned to: ", usersDict[selectedUser] ?? Member(name: "ERROR", points: 0, pictureURL: "https://media-exp1.licdn.com/dms/image/C4E03AQG1K38VePz-kQ/profile-displayphoto-shrink_200_200/0/1565002151065?e=1623888000&v=beta&t=GmmqAF4sHLeT020QAoNqwRcREIRS_x22xzNOIjiGQo"))
         
         // Process data, create new chore from input
         let chore = Chore(partition: "part",
                           title: title,
-                          createdBy: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://media-exp1.licdn.com/dms/image/C4E03AQG1K38VePz-kQ/profile-displayphoto-shrink_200_200/0/1565002151065?e=1623888000&v=beta&t=GmmqAF4sHLeT020QAoNqwRcREIRS_x22xzNOIjiGQo"),
-                          assignedTo: usersDict[selectedUser] ?? User(name: "ERROR", points: 0, pictureURL: "https://media-exp1.licdn.com/dms/image/C4E03AQG1K38VePz-kQ/profile-displayphoto-shrink_200_200/0/1565002151065?e=1623888000&v=beta&t=GmmqAF4sHLeT020QAoNqwRcREIRS_x22xzNOIjiGQo"),
+                          createdBy: Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://media-exp1.licdn.com/dms/image/C4E03AQG1K38VePz-kQ/profile-displayphoto-shrink_200_200/0/1565002151065?e=1623888000&v=beta&t=GmmqAF4sHLeT020QAoNqwRcREIRS_x22xzNOIjiGQo"),
+                          assignedTo: usersDict[selectedUser] ?? Member(name: "ERROR", points: 0, pictureURL: "https://media-exp1.licdn.com/dms/image/C4E03AQG1K38VePz-kQ/profile-displayphoto-shrink_200_200/0/1565002151065?e=1623888000&v=beta&t=GmmqAF4sHLeT020QAoNqwRcREIRS_x22xzNOIjiGQo"),
                           dueDate: Date(),
                           repeating: false,
                           points: Int(points) ?? 0,

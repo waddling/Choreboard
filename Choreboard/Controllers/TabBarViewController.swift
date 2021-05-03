@@ -12,6 +12,8 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         let vc1 = ProfileViewController()
         let vc2 = HomeViewController()
         let vc3 = SettingsViewController()

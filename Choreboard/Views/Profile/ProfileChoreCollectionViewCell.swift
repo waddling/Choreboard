@@ -13,7 +13,7 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProfileChoreCollectionViewCell"
     var checked = false
     var globalIndex = 0
-    var user: User = User(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
+    var user: Member = Member(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
     
     // for a picture example, see 25:45 of part 9 of the tutorial
     private let titleLabel: UILabel = {

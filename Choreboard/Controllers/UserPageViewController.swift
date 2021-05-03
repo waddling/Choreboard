@@ -23,7 +23,7 @@ class UserPageViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let temp = User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
+        let temp = Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
         self.updateUI(with: temp)
         tableView.delegate = self
         tableView.dataSource = self
@@ -39,7 +39,7 @@ class UserPageViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.frame = view.bounds
     }
     
-    private func updateUI(with model: User) {
+    private func updateUI(with model: Member) {
         tableView.isHidden = false
         
         // configure table models (strings to be displayed in rows, in order)
