@@ -19,8 +19,8 @@ class Chore: Object {
     @objc dynamic var _partition: String = ""
     @objc dynamic var title: String = ""
     @objc dynamic var details: String?
-    @objc dynamic var createdBy: User? = User()
-    @objc dynamic var assignedTo: User? = User()
+    @objc dynamic var createdBy: String = ""
+    @objc dynamic var assignedTo: String?
     @objc dynamic var creationDate: Date = Date()
     @objc dynamic var dueDate: Date?
     @objc dynamic var repeating: Bool = false
@@ -40,7 +40,7 @@ class Chore: Object {
         }
     }
     
-    convenience init(partition: String, title: String, createdBy: User, assignedTo: User, dueDate: Date, repeating: Bool, points: Int, status: String) {
+    convenience init(partition: String, title: String, createdBy: String, assignedTo: String, dueDate: Date, repeating: Bool, points: Int, status: String) {
         self.init()
         self.title = title
         self.createdBy = createdBy

@@ -20,13 +20,17 @@
 		048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E5B70260BB139009978B4 /* HomeViewController.swift */; };
 		048E5B76260BB13C009978B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B75260BB13C009978B4 /* Assets.xcassets */; };
 		048E5B79260BB13C009978B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */; };
-		04A77F8A262B6E640023975C /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A77F89262B6E640023975C /* SetupViewController.swift */; };
+		04A77F8A262B6E640023975C /* NameSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A77F89262B6E640023975C /* NameSetupViewController.swift */; };
 		04A77F91262CDCBD0023975C /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F8D262CDCBD0023975C /* Lato-Italic.ttf */; };
 		04A77F92262CDCBD0023975C /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F8E262CDCBD0023975C /* Lato-Light.ttf */; };
 		04A77F93262CDCBD0023975C /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F8F262CDCBD0023975C /* Lato-Regular.ttf */; };
 		04A77F94262CDCBD0023975C /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F90262CDCBD0023975C /* Lato-LightItalic.ttf */; };
 		04A77F98262CFD220023975C /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F96262CFD220023975C /* Quicksand-Regular.ttf */; };
 		04A77F99262CFD220023975C /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F97262CFD220023975C /* Quicksand-SemiBold.ttf */; };
+		04A7A686263FA4070002C8B8 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7A685263FA4070002C8B8 /* Member.swift */; };
+		04AB1F92263B45210050087F /* HouseholdSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1F91263B45210050087F /* HouseholdSetupViewController.swift */; };
+		04AB1F94263B4A120050087F /* NewHouseholdSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1F93263B4A120050087F /* NewHouseholdSetupViewController.swift */; };
+		04AB1F96263B4A270050087F /* JoinHouseholdSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB1F95263B4A270050087F /* JoinHouseholdSetupViewController.swift */; };
 		04B798A32627C48C0095AE2E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B798A22627C48C0095AE2E /* SignInViewController.swift */; };
 		04B798A62627C6330095AE2E /* EmailSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B798A52627C6330095AE2E /* EmailSignInViewController.swift */; };
 		04B904CA2625D3E8001551A5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B904C92625D3E8001551A5 /* Extensions.swift */; };
@@ -72,13 +76,17 @@
 		048E5B78260BB13C009978B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048E5B7A260BB13C009978B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048E5B81260BB2A7009978B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		04A77F89262B6E640023975C /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		04A77F89262B6E640023975C /* NameSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSetupViewController.swift; sourceTree = "<group>"; };
 		04A77F8D262CDCBD0023975C /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		04A77F8E262CDCBD0023975C /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		04A77F8F262CDCBD0023975C /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		04A77F90262CDCBD0023975C /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		04A77F96262CFD220023975C /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		04A77F97262CFD220023975C /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		04A7A685263FA4070002C8B8 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		04AB1F91263B45210050087F /* HouseholdSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdSetupViewController.swift; sourceTree = "<group>"; };
+		04AB1F93263B4A120050087F /* NewHouseholdSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHouseholdSetupViewController.swift; sourceTree = "<group>"; };
+		04AB1F95263B4A270050087F /* JoinHouseholdSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinHouseholdSetupViewController.swift; sourceTree = "<group>"; };
 		04B798A22627C48C0095AE2E /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		04B798A52627C6330095AE2E /* EmailSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInViewController.swift; sourceTree = "<group>"; };
 		04B904C92625D3E8001551A5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -164,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				0477EAA426124D90009DC747 /* Household.swift */,
+				04A7A685263FA4070002C8B8 /* Member.swift */,
 				0477EAAC26124DA6009DC747 /* Chore.swift */,
 				0477EAAF26124DCC009DC747 /* User.swift */,
 				FEB882BE2625F426004F0D1E /* SettingsModels.swift */,
@@ -179,6 +188,7 @@
 				048E5B70260BB139009978B4 /* HomeViewController.swift */,
 				047F000B2612B6FC009EF15D /* SettingsViewController.swift */,
 				04DDB02D261420FD008E03EB /* AuthViewController.swift */,
+				FEF61DAE26374EA30095F769 /* AddChoreViewController.swift */,
 				04E918B726252AD2009469F0 /* LoginViewController.swift */,
 				FEB882C12625F980004F0D1E /* HouseholdViewController.swift */,
 				FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */,
@@ -191,6 +201,10 @@
 				04A77F89262B6E640023975C /* SetupViewController.swift */,
 				FEF61DAE26374EA30095F769 /* AddChoreViewController.swift */,
 				FE4C58C0263F881500BD0DF5 /* MemberSummaryViewController.swift */,
+				04A77F89262B6E640023975C /* NameSetupViewController.swift */,
+				04AB1F91263B45210050087F /* HouseholdSetupViewController.swift */,
+				04AB1F93263B4A120050087F /* NewHouseholdSetupViewController.swift */,
+				04AB1F95263B4A270050087F /* JoinHouseholdSetupViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -426,10 +440,12 @@
 			files = (
 				FEF61DA62636EF290095F769 /* ProfileChoreCellViewModel.swift in Sources */,
 				04E918B826252AD2009469F0 /* LoginViewController.swift in Sources */,
+				04AB1F96263B4A270050087F /* JoinHouseholdSetupViewController.swift in Sources */,
 				048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */,
 				FE8B110326262E0900236EB3 /* UserPageViewController.swift in Sources */,
+				04AB1F94263B4A120050087F /* NewHouseholdSetupViewController.swift in Sources */,
 				0477EA9D26124D40009DC747 /* AuthManager.swift in Sources */,
-				04A77F8A262B6E640023975C /* SetupViewController.swift in Sources */,
+				04A77F8A262B6E640023975C /* NameSetupViewController.swift in Sources */,
 				FE8B11192626614200236EB3 /* ChoreCellViewModel.swift in Sources */,
 				047F000C2612B6FC009EF15D /* SettingsViewController.swift in Sources */,
 				FEB882C22625F980004F0D1E /* HouseholdViewController.swift in Sources */,
@@ -445,6 +461,7 @@
 				FEF61DAF26374EA30095F769 /* AddChoreViewController.swift in Sources */,
 				FE4C58C1263F881500BD0DF5 /* MemberSummaryViewController.swift in Sources */,
 				04DDB02E261420FD008E03EB /* AuthViewController.swift in Sources */,
+				04A7A686263FA4070002C8B8 /* Member.swift in Sources */,
 				FEB882C52625FB0A004F0D1E /* PrivacyViewController.swift in Sources */,
 				04B904CA2625D3E8001551A5 /* Extensions.swift in Sources */,
 				0477EAAD26124DA6009DC747 /* Chore.swift in Sources */,
@@ -453,6 +470,7 @@
 				FEF61DA32636EEDA0095F769 /* ProfileHouseholdMemberCollectionViewCell.swift in Sources */,
 				FE8B111226265C7800236EB3 /* ChoreCollectionViewCell.swift in Sources */,
 				FEB882BF2625F426004F0D1E /* SettingsModels.swift in Sources */,
+				04AB1F92263B45210050087F /* HouseholdSetupViewController.swift in Sources */,
 				FE8B111F262690F900236EB3 /* TitleHeaderCollectionReusableView.swift in Sources */,
 				FE8B111626265CA000236EB3 /* HouseholdMemberCollectionViewCell.swift in Sources */,
 				FEF61DAC263723E50095F769 /* FooterButtonCollectionViewCell.swift in Sources */,

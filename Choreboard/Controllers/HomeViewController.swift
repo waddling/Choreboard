@@ -67,7 +67,6 @@ class HomeViewController: UIViewController {
     }()
     
     private var sections = [HomeSectionType]()
-    
     func reloadSections() {
         sections = [HomeSectionType]()
         sections.append(.chores(viewModels: choresList.chores.value!.compactMap({
@@ -103,7 +102,7 @@ class HomeViewController: UIViewController {
                 self?.reloadSections()
             }
         }
-        
+
         // Populate dummy chore data
         choresList.chores.value!.append(Chore(partition: "part", title: "Do dishes", createdBy: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 1, status: "complete"))
         choresList.chores.value!.append(Chore(partition: "part", title: "Take trash out", createdBy: User(name: "Yeon Kim", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), assignedTo: User(name: "John Holland", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"), dueDate: Date(), repeating: false, points: 2, status: "incomplete"))

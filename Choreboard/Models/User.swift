@@ -13,9 +13,11 @@ class User: Object {
     @objc dynamic var _partition: String = ""
     @objc dynamic var email: String = ""
     @objc dynamic var name: String? = nil
-    @objc dynamic var points: Int = 0
-    @objc dynamic var pictureURL: String = ""
-    let households = LinkingObjects(fromType: Household.self, property: "members")
+
+    // @objc dynamic var points: Int = 0
+    // @objc dynamic var pictureURL: String = ""
+    @objc dynamic var profilePictureLink: String? = nil
+    let memberOf = RealmSwift.List<String>()
     @objc dynamic var firstTimeSetup: Bool = true
     
     override static func primaryKey() -> String? {
@@ -25,8 +27,8 @@ class User: Object {
     convenience init(name: String, points: Int, pictureURL: String) {
         self.init()
         self.name = name
-        self.points = points
-        self.pictureURL = pictureURL
+        // self.points = points
+        // self.pictureURL = pictureURL
     }
 }
 

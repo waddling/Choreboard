@@ -133,7 +133,7 @@ class EmailSignInViewController: UIViewController {
                     // Get a configuration to open the synced realm.
                     var configuration = user.configuration(partitionValue: "user=\(user.id)")
                     // Only allow User objects in this partition.
-                    configuration.objectTypes = [User.self, Household.self, Chore.self]
+                    configuration.objectTypes = [User.self]
                     
                     // Open the realm asynchronously so that it downloads the remote copy before
                     // opening the local copy.
@@ -147,7 +147,7 @@ class EmailSignInViewController: UIViewController {
                                 print("Succussfully opened realm: \(userRealm)")
                                 if (user.customData["firstTimeSetup"] ?? AnyBSON(true)) == AnyBSON(true) {
                                     print("First Time Setup")
-                                    self!.navigationController!.pushViewController(SetupViewController(userRealm: userRealm), animated: true)
+                                    self!.navigationController!.pushViewController(NameSetupViewController(realm: userRealm), animated: true)
                                 } else {
                                     print("Not First Time Setup")
                                     // Go to the list of projects in the user object contained in the user realm.
