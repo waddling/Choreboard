@@ -8,13 +8,22 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
+    
+    private let imageView: UIImageView = {
+        let imageSize: CGFloat = 50
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
+        image.contentMode = .scaleAspectFill
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = imageSize/2
+        let url = URL(string: "https://st4.depositphotos.com/8564750/26977/v/600/depositphotos_269770174-stock-illustration-home-puzzle-pieces-estate-vector.jpg")
+        image.sd_setImage(with: url, completed: nil)
+        return image
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Sign Up"
         view.backgroundColor = .systemBackground
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         let signUpOptions = UIStackView()
         signUpOptions.translatesAutoresizingMaskIntoConstraints = false

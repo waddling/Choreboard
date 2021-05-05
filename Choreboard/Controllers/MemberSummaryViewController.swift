@@ -24,12 +24,25 @@ class MemberSummaryViewController: UIViewController, UICollectionViewDataSource,
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "<title>"
+        label.sizeToFit()
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 8.0
+        label.textAlignment = NSTextAlignment(.center)
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.backgroundColor = color.UIColorFromRGB(rgbValue: 0x6EADE9)
+        label.layer.borderWidth = 1
         return label
     }()
     
     private let pointsLabel: UILabel = {
         let label = UILabel()
         label.text = "<points>"
+        label.sizeToFit()
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 8.0
+        label.textAlignment = NSTextAlignment(.center)
+        label.backgroundColor = color.UIColorFromRGB(rgbValue: 0xd4d294)
+        label.layer.borderWidth = 1
         return label
     }()
     

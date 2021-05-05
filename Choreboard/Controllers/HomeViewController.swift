@@ -428,8 +428,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 let vc = MemberSummaryViewController(user: cell.user)
                 vc.title = "Member Summary"
                 vc.navigationItem.largeTitleDisplayMode = .never
-                navigationController?.pushViewController(vc, animated: true)
-                //present(UINavigationController(rootViewController: vc), animated: true)
+                //navigationController?.pushViewController(vc, animated: true)
+                present(UINavigationController(rootViewController: vc), animated: true)
                 //reloadSections()
                 // YEON TODO: Send updated data to database
             }
