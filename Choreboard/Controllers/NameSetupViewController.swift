@@ -10,10 +10,10 @@ import UIKit
 import RealmSwift
 
 class NameSetupViewController: UIViewController {
-    let realm: Realm
+    let userRealm: Realm
     var notificationToken: NotificationToken?
     var objectNotificationToken: NotificationToken?
-    var userData: User
+    var userData: User?
     
     let namePrompt = UILabel()
     let namePromptInfo = UILabel()
@@ -26,17 +26,16 @@ class NameSetupViewController: UIViewController {
         }
     }
     
-    init(realm: Realm) {
-        self.realm = realm
-        self.userData = User(name: "")
+    init(userRealm: Realm) {
+        self.userRealm = userRealm
         
         super.init(nibName: nil, bundle: nil)
         
         // There should only be one user in my realm - that is myself
-        let usersInRealm = realm.objects(User.self)
+        let usersInRealm = userRealm.objects(User.self)
 
         notificationToken = usersInRealm.observe { [weak self, usersInRealm] (_) in
-            self?.userData = usersInRealm.first!
+            self?.userData = usersInRealm.first
         }
     }
     
@@ -56,6 +55,7 @@ class NameSetupViewController: UIViewController {
         title = "Setup"
         view.backgroundColor = .systemBackground
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutButtonDidClick))
@@ -118,7 +118,7 @@ class NameSetupViewController: UIViewController {
         nameSubmitButton.layer.borderWidth = 1
         nameSubmitButton.layer.borderColor = UIColor(hex: "#6EADE9")!.cgColor
         NSLayoutConstraint.activate([
-            nameSubmitButton.widthAnchor.constraint(equalToConstant: 250),
+            nameSubmitButton.widthAnchor.constraint(equalToConstant: 150),
             nameSubmitButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             nameSubmitButton.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 40)
         ])
@@ -141,10 +141,10 @@ class NameSetupViewController: UIViewController {
     }
     
     @objc func nameSubmitButtonDidClick() {
-        objectNotificationToken = userData.observe { change in
+        objectNotificationToken = userData!.observe { change in
             switch change {
             case .change(_, _):
-                self.navigationController!.pushViewController(HouseholdSetupViewController(realm: self.realm), animated: true)
+                self.navigationController!.pushViewController(HouseholdSetupViewController(userRealm: self.userRealm), animated: true)
                 self.notificationToken?.invalidate()
                 self.objectNotificationToken?.invalidate()
             case .error(let error):
@@ -159,10 +159,10 @@ class NameSetupViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         } else {
-            print("\(userData)")
+            print("\(userData!)")
             
-            try! self.realm.write {
-                userData.name = name!
+            try! self.userRealm.write {
+                userData!.name = name!
             }
         }
     }

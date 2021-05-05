@@ -14,6 +14,8 @@ class SignUpViewController: UIViewController {
         title = "Sign Up"
         view.backgroundColor = .systemBackground
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         let signUpOptions = UIStackView()
         signUpOptions.translatesAutoresizingMaskIntoConstraints = false
         signUpOptions.axis = .vertical

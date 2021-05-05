@@ -12,7 +12,6 @@ class EmailSignUpViewController: UIViewController {
     let emailField = UITextField()
     let passwordField = UITextField()
     let signUpButton = UIButton(type: .custom)
-    let errorLabel = UILabel()
     let activityIndicator = UIActivityIndicatorView(style: .medium)
     
     var email: String? {
@@ -83,16 +82,11 @@ class EmailSignUpViewController: UIViewController {
         signUpButton.layer.borderWidth = 1
         signUpButton.layer.borderColor = UIColor(hex: "#6EADE9")!.cgColor
         container.addArrangedSubview(signUpButton)
-        
-        errorLabel.numberOfLines = 0
-        errorLabel.textColor = .red
-        container.addArrangedSubview(errorLabel)
     }
     
     func setLoading(_ loading: Bool) {
         if loading {
             activityIndicator.startAnimating()
-            errorLabel.text = ""
         } else {
             activityIndicator.stopAnimating()
         }
@@ -112,13 +106,14 @@ class EmailSignUpViewController: UIViewController {
                 self!.setLoading(false)
                 guard error == nil else {
                     print("Signup failed: \(error!)")
-                    self!.errorLabel.text = "Signup failed: \(error!.localizedDescription)"
+                    let alertController = UIAlertController(title: "Error", message: "\(error!.localizedDescription)", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self!.present(alertController, animated: true, completion: nil)
                     return
                 }
                 print("Signup successful!")
 
                 // Registering just registers. Now we need to sign in, but we can reuse the existing email and password.
-                self!.errorLabel.text = "Signup successful! Signing in..."
                 self!.signIn()
             }
         })
@@ -139,7 +134,9 @@ class EmailSignUpViewController: UIViewController {
                 case .failure(let error):
                     // Auth error: user already exists? Try logging in as that user.
                     print("Login failed: \(error)")
-                    self!.errorLabel.text = "Login failed: \(error.localizedDescription)"
+                    let alertController = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self!.present(alertController, animated: true, completion: nil)
                     return
                 case .success(let user):
                     print("Login succeeded!")
@@ -151,7 +148,7 @@ class EmailSignUpViewController: UIViewController {
                     // Get a configuration to open the synced realm.
                     var configuration = user.configuration(partitionValue: "user=\(user.id)")
                     // Only allow User objects in this partition.
-                    configuration.objectTypes = [User.self, Household.self, Chore.self]
+                    configuration.objectTypes = [User.self]
                     
                     // Open the realm asynchronously so that it downloads the remote copy before
                     // opening the local copy.
@@ -161,14 +158,14 @@ class EmailSignUpViewController: UIViewController {
                             switch result {
                             case .failure(let error):
                                 fatalError("Failed to open realm: \(error)")
-                            case .success(let realm):
-                                print("Succussfully opened realm: \(realm)")
-                                if user.customData["firstTimeSetup"] == AnyBSON(true) {
+                            case .success(let userRealm):
+                                print("Succussfully opened realm: \(userRealm)")
+                                if (user.customData["firstTimeSetup"] ?? AnyBSON(true)) == AnyBSON(true) {
                                     print("First Time Setup")
+                                    self!.navigationController!.pushViewController(NameSetupViewController(userRealm: userRealm), animated: true)
                                 } else {
                                     print("Not First Time Setup")
-                                    // Go to the list of projects in the user object contained in the user realm.
-                                    // self!.navigationController!.pushViewController(TabBarViewController(), animated: true)
+                                    fatalError("When creating a new account, they should always be taken to the onboarding process.")
                                 }
                             }
                         }

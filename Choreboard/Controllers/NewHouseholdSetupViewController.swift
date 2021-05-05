@@ -10,10 +10,10 @@ import UIKit
 import RealmSwift
 
 class NewHouseholdSetupViewController: UIViewController {
-    let realm: Realm
+    let userRealm: Realm
     var notificationToken: NotificationToken?
     var objectNotificationToken: NotificationToken?
-    var userData: User
+    var userData: User?
     
     let householdNamePrompt = UILabel()
     let householdNameField = UITextField()
@@ -25,17 +25,16 @@ class NewHouseholdSetupViewController: UIViewController {
         }
     }
     
-    init(realm: Realm) {
-        self.realm = realm
-        self.userData = User(name: "")
+    init(userRealm: Realm) {
+        self.userRealm = userRealm
         
         super.init(nibName: nil, bundle: nil)
         
         // There should only be one user in my realm - that is myself
-        let usersInRealm = realm.objects(User.self)
+        let usersInRealm = userRealm.objects(User.self)
 
         notificationToken = usersInRealm.observe { [weak self, usersInRealm] (_) in
-            self?.userData = usersInRealm.first!
+            self?.userData = usersInRealm.first
         }
     }
     
@@ -89,7 +88,7 @@ class NewHouseholdSetupViewController: UIViewController {
         householdNameSubmitButton.translatesAutoresizingMaskIntoConstraints = false
         householdNameSubmitButton.setAttributedTitle(
             NSAttributedString(
-                string: "Create Household",
+                string: "Create",
                 attributes: [
                     NSAttributedString.Key.font: UIFont(name: "Lato-Regular", size: 18)!,
                     NSAttributedString.Key.foregroundColor: UIColor.white
@@ -103,7 +102,7 @@ class NewHouseholdSetupViewController: UIViewController {
         householdNameSubmitButton.layer.borderWidth = 1
         householdNameSubmitButton.layer.borderColor = UIColor(hex: "#6EADE9")!.cgColor
         NSLayoutConstraint.activate([
-            householdNameSubmitButton.widthAnchor.constraint(equalToConstant: 250),
+            householdNameSubmitButton.widthAnchor.constraint(equalToConstant: 150),
             householdNameSubmitButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             householdNameSubmitButton.topAnchor.constraint(equalTo: householdNameField.bottomAnchor, constant: 40)
         ])
@@ -126,7 +125,7 @@ class NewHouseholdSetupViewController: UIViewController {
     }
 
     @objc func householdNameSubmitButtonDidClick() {
-        objectNotificationToken = userData.observe { change in
+        objectNotificationToken = userData!.observe { change in
             switch change {
             case .change(_, _):
                 print("Changes were made.")
@@ -145,7 +144,7 @@ class NewHouseholdSetupViewController: UIViewController {
         } else {
             let household = Household(name: householdName!)
             household._partition = "household=\(household._id)"
-            household.members.append(Member(user: userData, household: household))
+            household.members.append(Member(user: userData!, household: household))
             print("\(household)")
             
             let user = app.currentUser!
@@ -218,7 +217,9 @@ class NewHouseholdSetupViewController: UIViewController {
                                     
                                     fatalError("Failed to open realm: \(error)")
                                 case .success(let realm):
-                                    userData.firstTimeSetup = false
+                                    try! userRealm.write {
+                                        userData!.firstTimeSetup = false
+                                    }
                                     
                                     try! realm.write {
                                         realm.add(household.self, update: .modified)

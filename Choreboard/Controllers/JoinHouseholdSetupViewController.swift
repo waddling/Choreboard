@@ -10,22 +10,21 @@ import UIKit
 import RealmSwift
 
 class JoinHouseholdSetupViewController: UIViewController {
-    let realm: Realm
+    let userRealm: Realm
     var notificationToken: NotificationToken?
     var objectNotificationToken: NotificationToken?
-    var userData: User
+    var userData: User?
     
-    init(realm: Realm) {
-        self.realm = realm
-        self.userData = User(name: "")
+    init(userRealm: Realm) {
+        self.userRealm = userRealm
         
         super.init(nibName: nil, bundle: nil)
         
         // There should only be one user in my realm - that is myself
-        let usersInRealm = realm.objects(User.self)
+        let usersInRealm = userRealm.objects(User.self)
 
         notificationToken = usersInRealm.observe { [weak self, usersInRealm] (_) in
-            self?.userData = usersInRealm.first!
+            self?.userData = usersInRealm.first
         }
     }
     

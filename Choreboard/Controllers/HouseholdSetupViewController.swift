@@ -10,13 +10,13 @@ import UIKit
 import RealmSwift
 
 class HouseholdSetupViewController: UIViewController {
-    let realm: Realm
+    let userRealm: Realm
     
     let newHouseholdButton = UIButton(type: .custom)
     let joinHouseholdButton = UIButton(type: .custom)
     
-    init(realm: Realm) {
-        self.realm = realm
+    init(userRealm: Realm) {
+        self.userRealm = userRealm
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -103,11 +103,11 @@ class HouseholdSetupViewController: UIViewController {
     }
     
     @objc func newHouseholdButtonDidClick() {
-        self.navigationController?.pushViewController(NewHouseholdSetupViewController(realm: self.realm), animated: true)
+        self.navigationController?.pushViewController(NewHouseholdSetupViewController(userRealm: self.userRealm), animated: true)
     }
     
     @objc func joinHouseholdButtonDidClick() {
-        self.navigationController?.pushViewController(JoinHouseholdSetupViewController(realm: self.realm), animated: true)
+        self.navigationController?.pushViewController(JoinHouseholdSetupViewController(userRealm: self.userRealm), animated: true)
     }
     
     /*

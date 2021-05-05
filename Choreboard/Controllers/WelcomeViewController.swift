@@ -14,6 +14,30 @@ class WelcomeViewController: UIViewController {
         title = "Choreboard"
         view.backgroundColor = .systemBackground
         
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        let logo = UIImage(named: "choreboard-logo.png")
+        let logoView = UIImageView(image: logo)
+        logoView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(logoView)
+        NSLayoutConstraint.activate([
+            logoView.heightAnchor.constraint(equalToConstant: 250),
+            logoView.widthAnchor.constraint(equalToConstant: 250),
+            logoView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
+            logoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100)
+        ])
+        
+        let logoLabel = UILabel()
+        logoLabel.translatesAutoresizingMaskIntoConstraints = false
+        logoLabel.textAlignment = .center
+        logoLabel.font = UIFont(name: "Quicksand-SemiBold", size: 32)!
+        logoLabel.text = "C H O R E B O A R D"
+        view.addSubview(logoLabel)
+        NSLayoutConstraint.activate([
+            logoLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
+            logoLabel.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 15)
+        ])
+        
         let container = UIStackView()
         container.translatesAutoresizingMaskIntoConstraints = false
         container.axis = .vertical
@@ -24,7 +48,7 @@ class WelcomeViewController: UIViewController {
             container.heightAnchor.constraint(equalToConstant: 100),
             container.widthAnchor.constraint(equalToConstant: 250),
             container.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
-            container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+            container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -200)
         ])
         
         let signUp = UIButton(type: .custom)
@@ -68,6 +92,10 @@ class WelcomeViewController: UIViewController {
         signIn.layer.borderWidth = 1
         signIn.layer.borderColor = UIColor(hex: "#6EADE9")!.cgColor
         container.addArrangedSubview(signIn)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     @objc func pushSignUp(_ sender: Any) {

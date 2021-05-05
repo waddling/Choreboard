@@ -147,7 +147,7 @@ class EmailSignInViewController: UIViewController {
                                 print("Succussfully opened realm: \(userRealm)")
                                 if (user.customData["firstTimeSetup"] ?? AnyBSON(true)) == AnyBSON(true) {
                                     print("First Time Setup")
-                                    self!.navigationController!.pushViewController(NameSetupViewController(realm: userRealm), animated: true)
+                                    self!.navigationController!.pushViewController(NameSetupViewController(userRealm: userRealm), animated: true)
                                 } else {
                                     print("Not First Time Setup")
                                     // Go to the list of projects in the user object contained in the user realm.
