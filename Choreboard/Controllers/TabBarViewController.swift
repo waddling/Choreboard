@@ -29,8 +29,9 @@ class TabBarViewController: UITabBarController {
 
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        let vc1 = ProfileViewController()
-        let vc2 = NewHomeViewController(userRealm: userRealm, householdRealm: householdRealm)
+        let vc1 = ProfileViewController(userRealm: userRealm, householdRealm: householdRealm)
+        //let vc2 = NewHomeViewController(userRealm: userRealm, householdRealm: householdRealm)
+        let vc2 = HomeViewController(userRealm: userRealm, householdRealm: householdRealm)
         let vc3 = SettingsViewController()
         
         vc1.title = "Profile"

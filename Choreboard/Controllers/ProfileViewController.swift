@@ -36,6 +36,36 @@ class color:NSObject
 
 class ProfileViewController: UIViewController {
     
+    let userRealm: Realm
+    let householdRealm: Realm
+    
+    var notificationToken: NotificationToken?
+    var objectNotificationToken: NotificationToken?
+    
+    var userData: User?
+    var houseData: Household?
+    
+    init(userRealm: Realm, householdRealm: Realm) {
+        self.userRealm = userRealm
+        self.householdRealm = householdRealm
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        // There should only be one user in my realm - that is myself
+        let usersInRealm = userRealm.objects(User.self)
+        let householdsInRealm = householdRealm.objects(Household.self)
+
+        notificationToken = usersInRealm.observe { [weak self, usersInRealm] (_) in
+            self?.userData = usersInRealm.first
+            self?.houseData = householdsInRealm.first
+        }
+    
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var globalIndexes: [Int] = []
     
     private var collectionView: UICollectionView = UICollectionView(
@@ -58,7 +88,7 @@ class ProfileViewController: UIViewController {
             self.globalIndexes = []
             var chores = [] as [Chore]
             for (index, chore) in choresList.chores.value!.enumerated() {
-                if chore.assignedTo?.name == "Joe Delle Donne" {
+                if chore.assignedTo?.name == userData?.name {
                     chores.append(chore)
                     self.globalIndexes.append(index)
                 }
@@ -69,7 +99,7 @@ class ProfileViewController: UIViewController {
         sections.append(.chores(viewModels: myChores.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                assignedTo: $0.assignedTo ?? Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
+                assignedTo: $0.assignedTo ?? Member(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
                 creationDate: $0.creationDate,
                 status: $0.status,
                 points: $0.points
@@ -79,7 +109,7 @@ class ProfileViewController: UIViewController {
             return ProfileHouseholdMemberCellViewModel(
                 name: $0.name!,
                 points: $0.points,
-                pictureURL: $0.pictureURL!,
+                pictureURL: $0.pictureURL ?? "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg",
                 user: $0
             )
         })))
@@ -105,7 +135,7 @@ class ProfileViewController: UIViewController {
             self.globalIndexes = []
             var chores = [] as [Chore]
             for (index, chore) in choresList.chores.value!.enumerated() {
-                if chore.assignedTo?.name == "Joe Delle Donne" {
+                if chore.assignedTo?.name == userData?.name {
                     chores.append(chore)
                     self.globalIndexes.append(index)
                 }
@@ -115,7 +145,7 @@ class ProfileViewController: UIViewController {
         sections.append(.chores(viewModels: myChores.compactMap({
             return ChoreCellViewModel(
                 title: $0.title,
-                assignedTo: $0.assignedTo ?? Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
+                assignedTo: $0.assignedTo ?? Member(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"),
                 creationDate: $0.creationDate,
                 status: $0.status,
                 points: $0.points
@@ -125,7 +155,7 @@ class ProfileViewController: UIViewController {
             return ProfileHouseholdMemberCellViewModel(
                 name: $0.name!,
                 points: $0.points,
-                pictureURL: $0.pictureURL!,
+                pictureURL: $0.pictureURL ?? "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg",
                 user: $0
             )
         })))
@@ -359,7 +389,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Delete completed chores assigned to current user
             var new_chores: [Chore] = []
             for (i, chore) in choresList.chores.value!.enumerated() {
-                if (chore.assignedTo?.name == "Joe Delle Donne" && chore.status == "complete") {
+                if (chore.assignedTo?.name == self.userData?.name && chore.status == "complete") {
+                    try! self.householdRealm.write {
+                        // Change the name of the maple latte.
+                        self.houseData?.chores.remove(at: i)
+                    }
                     continue
                 }
                 new_chores.append(chore)
@@ -422,10 +456,18 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                     }
                 }
                 
+                
+                
                 if (!cell.checked) {
-                    choresList.users.value![index].points -= choresList.chores.value![cell.globalIndex].points
+                    try! householdRealm.write {
+                        // Change the name of the maple latte.
+                        choresList.users.value![index].points -= choresList.chores.value![cell.globalIndex].points
+                    }
                 } else {
-                    choresList.users.value![index].points += choresList.chores.value![cell.globalIndex].points
+                    try! householdRealm.write {
+                        // Change the name of the maple latte.
+                        choresList.users.value![index].points += choresList.chores.value![cell.globalIndex].points
+                    }
                 }
                 
                 
@@ -433,12 +475,20 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // Alter tapped chore data
                 if (!cell.checked) {
                     // Now incomplete, tapped while checked, make incomplete
-                    choresList.chores.value![cell.globalIndex].status = "incomplete"
+                    try! householdRealm.write {
+                        print(">>>>> Written: INCOMPLETE")
+                        choresList.chores.value![cell.globalIndex].status = "incomplete"
+                    }
+                    
                     choresList.users.value!.append(Member(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
                     _ = choresList.users.value!.popLast()
                 } else {
                     // Now complete, tapped while unchecked, make complete
-                    choresList.chores.value![cell.globalIndex].status = "complete"
+                    //choresList.chores.value![cell.globalIndex].status = "complete"
+                    try! householdRealm.write {
+                        print(">>>>> Written: COMPLETE")
+                        choresList.chores.value![cell.globalIndex].status = "complete"
+                    }
                     choresList.users.value!.append(Member(name: "<temp>", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg"))
                     _ = choresList.users.value!.popLast()
                 }

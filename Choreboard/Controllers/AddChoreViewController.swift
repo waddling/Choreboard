@@ -179,7 +179,14 @@ class AddChoreViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                           points: Int(points) ?? 0,
                           status: "incomplete")
         choresList.chores.value!.append(chore)
+        try! home.householdRealm.write {
+            home.houseData!.chores.append(Chore(partition: home.houseData!._partition, title: title, createdBy: Member(user: home.userData!, household: home.houseData!), assignedTo: usersDict[selectedUser]!, dueDate: NSDate() as Date, repeating: false, points: Int(points) ?? 0, status: "incomplete"))
+            //home.householdRealm.add(Chore(partition: home.houseData!._partition, title: title, createdBy: Member(user: home.userData!, household: home.houseData!), assignedTo: usersDict[selectedUser]!, dueDate: NSDate() as Date, repeating: false, points: Int(points) ?? 0, status: ChoreStatus.Open.rawValue))
+        }
         home.reloadSections()
+        for chore in home.houseData!.chores {
+            print(chore)
+        }
         
         // Navigate back to Home Controller when done
         navigationController?.dismiss(animated: true, completion: nil)

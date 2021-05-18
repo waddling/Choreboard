@@ -64,7 +64,7 @@ class MemberSummaryViewController: UIViewController, UICollectionViewDataSource,
     let user: Member
     init(user: Member) {
         self.user = user
-        let url = URL(string: user.pictureURL!)
+        let url = URL(string: user.pictureURL ?? "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
         imageView.sd_setImage(with: url, completed: nil)
         self.titleLabel.text = user.name
         self.pointsLabel.text = "Points: \(String(user.points))"

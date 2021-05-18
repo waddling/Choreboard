@@ -10,6 +10,8 @@ import RealmSwift
 
 let app = App(id: "choreboard-nqalj")
 
+
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
