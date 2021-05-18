@@ -165,6 +165,11 @@ class ProfileViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: TitleHeaderCollectionReusableView.identifier
         )
+        collectionView.register(
+            UICollectionReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: TitleFooterCollectionReusableView.identifier
+        )
         
         collectionView.allowsSelection = true
         
@@ -184,6 +189,14 @@ class ProfileViewController: UIViewController {
                 ),
                 elementKind: UICollectionView.elementKindSectionHeader,
                 alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(85)
+                ),
+                elementKind: UICollectionView.elementKindSectionFooter,
+                alignment: .bottom
             )
         ]
         
@@ -301,6 +314,31 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionFooter,
+                withReuseIdentifier: TitleFooterCollectionReusableView.identifier,
+                for: indexPath
+            )
+            // Delete Completed Chores button, Only do this footer for the first section
+            if (indexPath.section == 0) {
+                let plusImage = UIImage(systemName: "trash")
+                let addButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
+                addButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+                addButton.backgroundColor = color.UIColorFromRGB(rgbValue: 0xE38686)
+                addButton.setImage(plusImage, for: .normal)
+                addButton.frame = CGRect(x: 2, y: 15, width: 300, height: 65)
+                addButton.setTitle("  Delete Completed Chores", for: .normal)
+                addButton.setTitleColor(.black, for: .normal)
+                addButton.tintColor = .black
+                addButton.layer.cornerRadius = 8.0
+                footer.addSubview(addButton)
+                return footer
+            }
+            return footer
+        }
+        
         guard let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: TitleHeaderCollectionReusableView.identifier,
@@ -312,6 +350,28 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         let title = sections[section].title
         header.configure(with: title)
         return header
+    }
+    
+    @objc func buttonAction() {
+        // Present confiramtion alert to user
+        let confirmAlert = UIAlertController(title: "Delete Completed Chores?", message: "All completed chores assigned to you will be permanently deleted.", preferredStyle: UIAlertController.Style.alert)
+        confirmAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
+            // Delete completed chores assigned to current user
+            var new_chores: [Chore] = []
+            for (i, chore) in choresList.chores.value!.enumerated() {
+                if (chore.assignedTo?.name == "Joe Delle Donne" && chore.status == "complete") {
+                    continue
+                }
+                new_chores.append(chore)
+            }
+            choresList.chores.value! = new_chores
+          }
+        ))
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
+          print("Cancelled delete...")
+          }
+        ))
+        present(confirmAlert, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
