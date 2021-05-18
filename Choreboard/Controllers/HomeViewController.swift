@@ -91,6 +91,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         // Listen to choresList ViewModel, reload whenever something changes
         choresList.chores.bind { [weak self] _ in
             DispatchQueue.main.async {

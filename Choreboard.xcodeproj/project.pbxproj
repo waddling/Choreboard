@@ -20,6 +20,7 @@
 		048E5B71260BB139009978B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E5B70260BB139009978B4 /* HomeViewController.swift */; };
 		048E5B76260BB13C009978B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B75260BB13C009978B4 /* Assets.xcassets */; };
 		048E5B79260BB13C009978B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048E5B77260BB13C009978B4 /* LaunchScreen.storyboard */; };
+		0499E3CB2653260D00A9540B /* NewHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499E3CA2653260D00A9540B /* NewHomeViewController.swift */; };
 		04A77F8A262B6E640023975C /* NameSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A77F89262B6E640023975C /* NameSetupViewController.swift */; };
 		04A77F91262CDCBD0023975C /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F8D262CDCBD0023975C /* Lato-Italic.ttf */; };
 		04A77F92262CDCBD0023975C /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A77F8E262CDCBD0023975C /* Lato-Light.ttf */; };
@@ -76,6 +77,7 @@
 		048E5B78260BB13C009978B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048E5B7A260BB13C009978B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048E5B81260BB2A7009978B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0499E3CA2653260D00A9540B /* NewHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeViewController.swift; sourceTree = "<group>"; };
 		04A77F89262B6E640023975C /* NameSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSetupViewController.swift; sourceTree = "<group>"; };
 		04A77F8D262CDCBD0023975C /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		04A77F8E262CDCBD0023975C /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
@@ -185,10 +187,12 @@
 			children = (
 				047F000526128FD6009EF15D /* TabBarViewController.swift */,
 				047F00082612B6D1009EF15D /* ProfileViewController.swift */,
+				0499E3CA2653260D00A9540B /* NewHomeViewController.swift */,
 				048E5B70260BB139009978B4 /* HomeViewController.swift */,
+				FEF61DAE26374EA30095F769 /* AddChoreViewController.swift */,
+				FE4C58C0263F881500BD0DF5 /* MemberSummaryViewController.swift */,
 				047F000B2612B6FC009EF15D /* SettingsViewController.swift */,
 				04DDB02D261420FD008E03EB /* AuthViewController.swift */,
-				FEF61DAE26374EA30095F769 /* AddChoreViewController.swift */,
 				04E918B726252AD2009469F0 /* LoginViewController.swift */,
 				FEB882C12625F980004F0D1E /* HouseholdViewController.swift */,
 				FEB882C42625FB0A004F0D1E /* PrivacyViewController.swift */,
@@ -198,9 +202,6 @@
 				04B904CD262635C1001551A5 /* EmailSignUpViewController.swift */,
 				04B798A22627C48C0095AE2E /* SignInViewController.swift */,
 				04B798A52627C6330095AE2E /* EmailSignInViewController.swift */,
-				04A77F89262B6E640023975C /* SetupViewController.swift */,
-				FEF61DAE26374EA30095F769 /* AddChoreViewController.swift */,
-				FE4C58C0263F881500BD0DF5 /* MemberSummaryViewController.swift */,
 				04A77F89262B6E640023975C /* NameSetupViewController.swift */,
 				04AB1F91263B45210050087F /* HouseholdSetupViewController.swift */,
 				04AB1F93263B4A120050087F /* NewHouseholdSetupViewController.swift */,
@@ -438,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0499E3CB2653260D00A9540B /* NewHomeViewController.swift in Sources */,
 				FEF61DA62636EF290095F769 /* ProfileChoreCellViewModel.swift in Sources */,
 				04E918B826252AD2009469F0 /* LoginViewController.swift in Sources */,
 				04AB1F96263B4A270050087F /* JoinHouseholdSetupViewController.swift in Sources */,

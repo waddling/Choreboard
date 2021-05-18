@@ -224,7 +224,7 @@ class NewHouseholdSetupViewController: UIViewController {
                                     try! realm.write {
                                         realm.add(household.self, update: .modified)
                                     }
-                                    self!.navigationController!.pushViewController(TabBarViewController(), animated: true)
+                                    self!.navigationController!.pushViewController(TabBarViewController(userRealm: userRealm, householdRealm: realm), animated: true)
                                 }
                             }
                         }

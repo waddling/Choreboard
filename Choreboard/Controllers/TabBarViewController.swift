@@ -5,17 +5,32 @@
 //  Created by Yeon Jun Kim on 3/29/21.
 //
 
+import Foundation
 import UIKit
+import RealmSwift
 
 class TabBarViewController: UITabBarController {
-
+    let userRealm: Realm
+    let householdRealm: Realm
+    
+    init(userRealm: Realm, householdRealm: Realm) {
+        self.userRealm = userRealm
+        self.householdRealm = householdRealm
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         let vc1 = ProfileViewController()
-        let vc2 = HomeViewController()
+        let vc2 = NewHomeViewController(userRealm: userRealm, householdRealm: householdRealm)
         let vc3 = SettingsViewController()
         
         vc1.title = "Profile"

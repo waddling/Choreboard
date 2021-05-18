@@ -15,6 +15,8 @@ class SignInViewController: UIViewController {
         title = "Sign In"
         view.backgroundColor = .systemBackground
 
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         let signInOptions = UIStackView()
         signInOptions.translatesAutoresizingMaskIntoConstraints = false
         signInOptions.axis = .vertical

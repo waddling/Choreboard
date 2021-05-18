@@ -92,6 +92,8 @@ class EmailSignInViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         emailField.text = ""
         passwordField.text = ""
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func setLoading(_ loading: Bool) {
@@ -150,9 +152,21 @@ class EmailSignInViewController: UIViewController {
                                     self!.navigationController!.pushViewController(NameSetupViewController(userRealm: userRealm), animated: true)
                                 } else {
                                     print("Not First Time Setup")
-                                    // Go to the list of projects in the user object contained in the user realm.
+                                    let householdID = user.customData["memberOf"]!?.arrayValue![0]!.stringValue! ?? "invalid"
+                                    print("\(user.customData["memberOf"]!?.arrayValue![0]!.stringValue!)")
                                     
-                                    self!.navigationController!.pushViewController(TabBarViewController(), animated: true)
+                                    Realm.asyncOpen(configuration: user.configuration(partitionValue: "household=\(householdID)")) { [weak self](result) in
+                                        DispatchQueue.main.async {
+                                            switch result {
+                                            case .failure(let error):
+                                                fatalError("Failed to open realm: \(error)")
+                                            case .success(let householdRealm):
+                                                print("Succussfully opened realm: \(householdRealm)")
+                                                self!.setLoading(false)
+                                                self!.navigationController!.pushViewController(TabBarViewController(userRealm: userRealm, householdRealm: householdRealm), animated: true)
+                                            }
+                                        }
+                                    }
                                 }
                                 
                             }

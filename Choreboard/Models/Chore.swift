@@ -42,6 +42,7 @@ class Chore: Object {
     
     convenience init(partition: String, title: String, createdBy: Member, assignedTo: Member, dueDate: Date, repeating: Bool, points: Int, status: String) {
         self.init()
+        self._partition = partition
         self.title = title
         self.createdBy = createdBy
         self.assignedTo = assignedTo

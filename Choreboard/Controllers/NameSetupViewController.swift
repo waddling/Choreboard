@@ -33,10 +33,14 @@ class NameSetupViewController: UIViewController {
         
         // There should only be one user in my realm - that is myself
         let usersInRealm = userRealm.objects(User.self)
+        self.userData = usersInRealm.first ?? User(name: "")
 
         notificationToken = usersInRealm.observe { [weak self, usersInRealm] (_) in
             self?.userData = usersInRealm.first
+            print("CHANGE: \(self?.userData ?? User(name: "NIL"))")
         }
+        
+        print("INIT: \(userData!)")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -141,6 +145,7 @@ class NameSetupViewController: UIViewController {
     }
     
     @objc func nameSubmitButtonDidClick() {
+        print("\(userData!)")
         objectNotificationToken = userData!.observe { change in
             switch change {
             case .change(_, _):
