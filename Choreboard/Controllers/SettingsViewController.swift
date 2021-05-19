@@ -109,7 +109,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func signOutTapped() {
-        // Sign out
+        let alertController = UIAlertController(title: "Are you sure you want to sign out?", message: "", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: {
+            _ -> Void in
+            print("Signing out...")
+            app.currentUser?.logOut { (_) in
+                DispatchQueue.main.async {
+                    print("Logged out!")
+                    
+                    // super.navigationController?.popToRootViewController(animated: true)
+                    // self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                    // self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func viewPrivacy() {

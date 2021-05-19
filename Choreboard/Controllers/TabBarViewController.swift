@@ -55,7 +55,6 @@ class TabBarViewController: UITabBarController {
         /* Set default view ot the middle tab */
         self.selectedIndex = 1
     }
-    
 
     /*
     // MARK: - Navigation
