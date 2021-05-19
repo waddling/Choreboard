@@ -117,13 +117,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 DispatchQueue.main.async {
                     print("Logged out!")
                     
-                    // super.navigationController?.popToRootViewController(animated: true)
-                    // self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                     self.navigationController?.navigationController?.popToRootViewController(animated: true)
                     
                     choresList.chores.value! = []
                     choresList.users.value! = []
-                    
                 }
             }
         }))
