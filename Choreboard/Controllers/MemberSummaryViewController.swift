@@ -252,6 +252,7 @@ extension MemberSummaryViewController {
             }
             let viewModel = viewModels[indexPath.row]
             cell.backgroundColor = color.UIColorFromRGB(rgbValue: 0x6EADE9)
+            cell.layer.cornerRadius = 8.0
             cell.configure(with: viewModel)
             return cell
         }

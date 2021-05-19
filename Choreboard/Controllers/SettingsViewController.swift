@@ -42,6 +42,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(UITableViewCell.self,
@@ -66,26 +67,26 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func configureModels() {
-        sections.append(Section(title: "Profiles",
+        sections.append(Section(title: "Profile",
                                 options: [
             Option(title: "My User Page", handler: { [weak self] in
                 DispatchQueue.main.async {
                     self?.viewUserPage()
                 }
-            }), Option(title: "Household", handler: { [weak self] in
+            })/*, Option(title: "Household", handler: { [weak self] in
                 DispatchQueue.main.async {
                     self?.viewHousehold()
                 }
-            })
+            })*/
         ]))
         
         sections.append(Section(title: "Account",
                                 options: [
-            Option(title: "Privacy", handler: { [weak self] in
+            /*Option(title: "Privacy", handler: { [weak self] in
                 DispatchQueue.main.async {
                     self?.viewPrivacy()
                 }
-            }), Option(title: "Sign Out", handler: { [weak self] in
+            }),*/ Option(title: "Sign Out", handler: { [weak self] in
                 DispatchQueue.main.async {
                     self?.signOutTapped()
                 }

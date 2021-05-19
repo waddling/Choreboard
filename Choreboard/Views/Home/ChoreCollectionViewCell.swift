@@ -32,6 +32,7 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 1 // lets text wrap if it needs to
         label.font = .systemFont(ofSize: 12, weight: .light)
+        label.layer.cornerRadius = 8.0
         return label
     }()
     
@@ -81,29 +82,29 @@ class ChoreCollectionViewCell: UICollectionViewCell {
         
         assignedToLabel.frame = CGRect(
             x: titleLabel.frame.minX,
-            y: titleLabel.frame.minY + 20,
-            width: 300,
-            height: titleLabel.frame.height
-        )
-        
-        pointsLabel.frame = CGRect(
-            x: assignedToLabel.frame.minX,
-            y: assignedToLabel.frame.minY + 20,
-            width: 300,
+            y: titleLabel.frame.minY + 29,
+            width: 310,
             height: titleLabel.frame.height
         )
         
         creationDateLabel.frame = CGRect(
-            x: pointsLabel.frame.minX,
-            y: pointsLabel.frame.minY + 20,
-            width: 300,
+            x: assignedToLabel.frame.minX,
+            y: assignedToLabel.frame.minY + 27,
+            width: 310,
             height: titleLabel.frame.height
         )
         
         statusLabel.frame = CGRect(
             x: creationDateLabel.frame.minX,
-            y: creationDateLabel.frame.minY + 25,
-            width: 100,
+            y: creationDateLabel.frame.minY + 27,
+            width: 152,
+            height: titleLabel.frame.height
+        )
+        
+        pointsLabel.frame = CGRect(
+            x: statusLabel.frame.maxX + 5,
+            y: statusLabel.frame.minY,
+            width: 152,
             height: titleLabel.frame.height
         )
         
@@ -122,10 +123,36 @@ class ChoreCollectionViewCell: UICollectionViewCell {
     // Configure view model to view
     func configure(with viewModel: ChoreCellViewModel) {
         titleLabel.text = viewModel.title
+        
+        // Assigned to label config
         assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name ?? "<nil>")"
+        assignedToLabel.sizeToFit()
+        assignedToLabel.layer.masksToBounds = true
+        assignedToLabel.layer.cornerRadius = 8.0
+        assignedToLabel.textAlignment = NSTextAlignment(.center)
+        assignedToLabel.layer.borderWidth = 1
+        assignedToLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xc1d5f5)
+        
+        // Points labeel config
         points = viewModel.points
         pointsLabel.text = "Points: \(String(viewModel.points))"
-        creationDateLabel.text = "Date added: \(viewModel.creationDate.description.split(separator: " ")[0] + " " +  viewModel.creationDate.description.split(separator: " ")[1])"
+        pointsLabel.sizeToFit()
+        pointsLabel.layer.masksToBounds = true
+        pointsLabel.layer.cornerRadius = 8.0
+        pointsLabel.textAlignment = NSTextAlignment(.center)
+        pointsLabel.layer.borderWidth = 1
+        pointsLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xd4d294)
+        
+        // Creation date label config
+        creationDateLabel.text = "Added on \(viewModel.creationDate.description.split(separator: " ")[0])"
+        creationDateLabel.sizeToFit()
+        creationDateLabel.layer.masksToBounds = true
+        creationDateLabel.layer.cornerRadius = 8.0
+        creationDateLabel.textAlignment = NSTextAlignment(.center)
+        creationDateLabel.layer.borderWidth = 1
+        creationDateLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xc1d5f5)
+        
+        // Statis label config
         statusLabel.text = "\(viewModel.status)"
         statusLabel.sizeToFit()
         statusLabel.layer.masksToBounds = true

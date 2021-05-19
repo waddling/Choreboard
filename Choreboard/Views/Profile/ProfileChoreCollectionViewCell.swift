@@ -92,35 +92,35 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
         
         assignedToLabel.frame = CGRect(
             x: titleLabel.frame.minX,
-            y: titleLabel.frame.minY + 20,
-            width: 300,
-            height: titleLabel.frame.height
-        )
-        
-        pointsLabel.frame = CGRect(
-            x: assignedToLabel.frame.minX,
-            y: assignedToLabel.frame.minY + 20,
-            width: 300,
+            y: titleLabel.frame.minY + 29,
+            width: 310,
             height: titleLabel.frame.height
         )
         
         creationDateLabel.frame = CGRect(
-            x: pointsLabel.frame.minX,
-            y: pointsLabel.frame.minY + 20,
-            width: 300,
+            x: assignedToLabel.frame.minX,
+            y: assignedToLabel.frame.minY + 27,
+            width: 310,
             height: titleLabel.frame.height
         )
         
         statusLabel.frame = CGRect(
-            x: creationDateLabel.frame.minX,
-            y: creationDateLabel.frame.minY + 20,
-            width: 130,
+            x: creationDateLabel.frame.minX + 45,
+            y: creationDateLabel.frame.minY + 28,
+            width: 100,
+            height: titleLabel.frame.height
+        )
+        
+        pointsLabel.frame = CGRect(
+            x: statusLabel.frame.maxX + 5,
+            y: statusLabel.frame.minY,
+            width: 100,
             height: titleLabel.frame.height
         )
         
         checkboxImageView.frame = CGRect(
-            x: statusLabel.frame.maxX + 5,
-            y: statusLabel.frame.minY,
+            x: statusLabel.frame.minX - 35,
+            y: statusLabel.frame.minY - 2,
             width: 30,
             height: 30
         )
@@ -151,10 +151,50 @@ class ProfileChoreCollectionViewCell: UICollectionViewCell {
         user = viewModel.assignedTo
         
         titleLabel.text = viewModel.title
-        assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name ?? "<nil>")"
+        /*assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name ?? "<nil>")"
         pointsLabel.text = "Points: \(String(viewModel.points))"
         creationDateLabel.text = "Date added: \(viewModel.creationDate.description.split(separator: " ")[0] + " " + viewModel.creationDate.description.split(separator: " ")[1])"
-        statusLabel.text = "Status: \(viewModel.status)"
+        statusLabel.text = "Status: \(viewModel.status)"*/
+        
+        // Assigned to label config
+        assignedToLabel.text = "Assigned to: \(viewModel.assignedTo.name ?? "<nil>")"
+        assignedToLabel.sizeToFit()
+        assignedToLabel.layer.masksToBounds = true
+        assignedToLabel.layer.cornerRadius = 8.0
+        assignedToLabel.textAlignment = NSTextAlignment(.center)
+        assignedToLabel.layer.borderWidth = 1
+        assignedToLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xc1d5f5)
+        
+        // Points labeel config
+        pointsLabel.text = "Points: \(String(viewModel.points))"
+        pointsLabel.sizeToFit()
+        pointsLabel.layer.masksToBounds = true
+        pointsLabel.layer.cornerRadius = 8.0
+        pointsLabel.textAlignment = NSTextAlignment(.center)
+        pointsLabel.layer.borderWidth = 1
+        pointsLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xd4d294)
+        
+        // Creation date label config
+        creationDateLabel.text = "Added on \(viewModel.creationDate.description.split(separator: " ")[0])"
+        creationDateLabel.sizeToFit()
+        creationDateLabel.layer.masksToBounds = true
+        creationDateLabel.layer.cornerRadius = 8.0
+        creationDateLabel.textAlignment = NSTextAlignment(.center)
+        creationDateLabel.layer.borderWidth = 1
+        creationDateLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xc1d5f5)
+        
+        // Statis label config
+        statusLabel.text = "\(viewModel.status)"
+        statusLabel.sizeToFit()
+        statusLabel.layer.masksToBounds = true
+        statusLabel.layer.cornerRadius = 8.0
+        statusLabel.textAlignment = NSTextAlignment(.center)
+        statusLabel.layer.borderWidth = 1
+        if viewModel.status == "complete" {
+            statusLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xB3D6C6)
+        } else {
+            statusLabel.backgroundColor = color.UIColorFromRGB(rgbValue: 0xE38686)
+        }
         self.globalIndex = index
     }
     
