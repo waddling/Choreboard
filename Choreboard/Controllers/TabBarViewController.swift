@@ -32,7 +32,7 @@ class TabBarViewController: UITabBarController {
         let vc1 = ProfileViewController(userRealm: userRealm, householdRealm: householdRealm)
         //let vc2 = NewHomeViewController(userRealm: userRealm, householdRealm: householdRealm)
         let vc2 = HomeViewController(userRealm: userRealm, householdRealm: householdRealm)
-        let vc3 = SettingsViewController()
+        let vc3 = SettingsViewController(userRealm: userRealm, householdRealm: householdRealm)
         
         vc1.title = "Profile"
         vc2.title = "Home"

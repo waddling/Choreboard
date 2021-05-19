@@ -6,8 +6,41 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    let userRealm: Realm
+    let householdRealm: Realm
+    
+    var notificationToken: NotificationToken?
+    var objectNotificationToken: NotificationToken?
+    
+    var userData: User?
+    var houseData: Household?
+    
+    init(userRealm: Realm, householdRealm: Realm) {
+        self.userRealm = userRealm
+        self.householdRealm = householdRealm
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        // There should only be one user in my realm - that is myself
+        let usersInRealm = userRealm.objects(User.self)
+        let householdsInRealm = householdRealm.objects(Household.self)
+
+        notificationToken = usersInRealm.observe { [weak self, usersInRealm] (_) in
+            self?.userData = usersInRealm.first
+            self?.houseData = householdsInRealm.first
+        }
+    
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -61,7 +94,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func viewUserPage() {
-        let vc = UserPageViewController()
+        let vc = UserPageViewController(userData: userData!, houseData: houseData!)
         vc.title = "User Page"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)

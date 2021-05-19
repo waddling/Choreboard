@@ -20,11 +20,23 @@ class UserPageViewController: UIViewController, UITableViewDelegate, UITableView
     
     private var models = [String]()
     
+    // Dependency Injection: required to access HomeViewCOntroller methods and vars
+    private let userData: User
+    private let houseData: Household
+    init(userData: User, houseData: Household) {
+        self.userData = userData
+        self.houseData = houseData
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let temp = Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
-        self.updateUI(with: temp)
+        //let temp = Member(name: "Joe Delle Donne", points: 0, pictureURL: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
+        self.updateUI(with: userData, model2: houseData)
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
@@ -39,14 +51,14 @@ class UserPageViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.frame = view.bounds
     }
     
-    private func updateUI(with model: Member) {
+    private func updateUI(with model: User, model2: Household) {
         tableView.isHidden = false
         
         // configure table models (strings to be displayed in rows, in order)
         models.append("Name: \(model.name ?? "<nil>")")
-        models.append("User ID: ")
-        models.append("Household Name: ")
-        models.append("Household ID: ")
+        models.append("User ID: \(model._id ?? "<nil>")")
+        models.append("Household Name: \(model2.name ?? "<nil>")")
+        models.append("Household ID: \(model2._id ?? "<nil>")")
         createTableHeader(with: "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg")
         
         tableView.reloadData()
