@@ -119,7 +119,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     
                     // super.navigationController?.popToRootViewController(animated: true)
                     // self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                    // self.navigationController?.popToRootViewController(animated: true)
+                    self.navigationController?.navigationController?.popToRootViewController(animated: true)
+                    
+                    choresList.chores.value! = []
+                    choresList.users.value! = []
+                    
                 }
             }
         }))
